@@ -25,7 +25,6 @@
   html,body{height:100%;overflow:hidden;}
   body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;display:flex;flex-direction:column;}
 
-  /* ── HEADER ── */
   .header{background:var(--dark2);border-bottom:2px solid var(--orange);padding:env(safe-area-inset-top,14px) 16px 12px;flex-shrink:0;}
   .header-top{display:flex;align-items:center;justify-content:space-between;}
   .logo{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--orange);letter-spacing:2px;line-height:1;}
@@ -37,7 +36,6 @@
   .pill-b{background:rgba(0,180,255,0.1);color:var(--blue);border:1px solid rgba(0,180,255,0.25);}
   .pill-g{background:rgba(0,212,106,0.1);color:var(--green);border:1px solid rgba(0,212,106,0.25);}
 
-  /* ── TABS ── */
   .tabs{display:flex;background:var(--dark2);border-bottom:1px solid var(--border);flex-shrink:0;overflow-x:auto;scrollbar-width:none;}
   .tabs::-webkit-scrollbar{display:none;}
   .tab{flex:1;min-width:72px;padding:10px 6px;text-align:center;font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:1px;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;transition:all 0.2s;white-space:nowrap;}
@@ -46,14 +44,63 @@
   .tab.active.red{color:var(--red);border-bottom-color:var(--red);}
   .tab.active.tapis{color:var(--blue);border-bottom-color:var(--blue);}
   .tab.active.conseils{color:var(--yellow);border-bottom-color:var(--yellow);}
+  .tab.active.suivi{color:#C084FC;border-bottom-color:#C084FC;}
 
-  /* ── PANELS ── */
+  /* ── SUIVI TRACKER ── */
+  .suivi-hero{background:linear-gradient(135deg,rgba(192,132,252,0.1),rgba(255,77,0,0.08));border:1px solid rgba(192,132,252,0.3);border-radius:13px;padding:16px;margin-bottom:14px;text-align:center;}
+  .suivi-hero .big-pct{font-family:'Bebas Neue',sans-serif;font-size:56px;line-height:1;background:linear-gradient(135deg,#C084FC,var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  .suivi-hero .sub{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
+  .suivi-hero .progress-wrap{margin-top:12px;background:var(--border);border-radius:6px;height:8px;overflow:hidden;}
+  .suivi-hero .progress-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,#C084FC,var(--orange));transition:width 0.8s ease;}
+
+  .saisie-card{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:14px;margin-bottom:14px;}
+  .saisie-card h3{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px;color:#C084FC;margin-bottom:12px;}
+  .saisie-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+  .saisie-field label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:4px;}
+  .saisie-field input{width:100%;background:var(--dark3);border:1px solid var(--border);border-radius:8px;padding:10px;color:var(--text);font-size:16px;font-family:'Bebas Neue',sans-serif;text-align:center;outline:none;}
+  .saisie-field input:focus{border-color:#C084FC;}
+  .saisie-field.full{grid-column:1/-1;}
+  .saisie-field textarea{width:100%;background:var(--dark3);border:1px solid var(--border);border-radius:8px;padding:10px;color:var(--text);font-size:12px;outline:none;resize:none;height:52px;font-family:'DM Sans',sans-serif;}
+  .saisie-field textarea:focus{border-color:#C084FC;}
+  .save-btn{width:100%;background:linear-gradient(135deg,#C084FC,#9333EA);color:white;border:none;border-radius:12px;padding:14px;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;cursor:pointer;}
+  .save-btn:active{opacity:0.8;}
+
+  .jalons-card{background:var(--card);border:1px solid var(--border);border-radius:13px;overflow:hidden;margin-bottom:14px;}
+  .jalon-row{display:flex;align-items:center;gap:12px;padding:11px 14px;border-bottom:1px solid var(--border);}
+  .jalon-row:last-child{border-bottom:none;}
+  .jalon-icon{font-size:18px;width:28px;text-align:center;flex-shrink:0;}
+  .jalon-info{flex:1;}
+  .jalon-date{font-size:12px;font-weight:600;}
+  .jalon-target{font-size:10px;color:var(--muted);}
+  .jalon-status{font-size:11px;font-weight:600;flex-shrink:0;}
+
+  .historique-card{background:var(--card);border:1px solid var(--border);border-radius:13px;overflow:hidden;margin-bottom:14px;}
+  .historique-card h3{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px;color:#C084FC;padding:12px 14px;border-bottom:1px solid var(--border);}
+  .hist-row{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--border);font-size:12px;}
+  .hist-row:last-child{border-bottom:none;}
+  .hist-date{color:var(--muted);flex-shrink:0;width:65px;}
+  .hist-poids{font-family:'Bebas Neue',sans-serif;font-size:16px;flex-shrink:0;width:52px;}
+  .hist-mg{flex:1;}
+  .hist-delta{font-size:11px;font-weight:600;flex-shrink:0;}
+  .hist-note{font-size:10px;color:var(--muted);grid-column:1/-1;}
+  .hist-del{background:none;border:none;color:var(--muted);font-size:14px;cursor:pointer;padding:2px 6px;flex-shrink:0;}
+
+  /* mini chart */
+  .chart-wrap{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:14px;margin-bottom:14px;}
+  .chart-wrap h3{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px;color:#C084FC;margin-bottom:12px;}
+  .chart-svg-wrap{width:100%;overflow:hidden;border-radius:8px;}
+  .empty-chart{text-align:center;padding:24px;font-size:12px;color:var(--muted);}
+
+  .stats-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-bottom:14px;}
+  .stat-box{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:12px 8px;text-align:center;}
+  .stat-box .sv{font-family:'Bebas Neue',sans-serif;font-size:22px;line-height:1;}
+  .stat-box .sl2{font-size:9px;color:var(--muted);margin-top:3px;line-height:1.3;}
+
   .panels{flex:1;overflow:hidden;position:relative;}
   .panel{display:none;height:100%;overflow-y:auto;padding:14px 14px 40px;animation:fadeIn 0.2s ease;-webkit-overflow-scrolling:touch;}
   .panel.active{display:block;}
   @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 
-  /* ── SESSION HEADER ── */
   .session-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
   .session-badge{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
   .badge-o{background:rgba(255,77,0,0.15);}
@@ -63,23 +110,48 @@
   .session-info p{font-size:11px;color:var(--muted);margin-top:2px;}
 
   /* ── EXERCISE CARD ── */
-  .exercise-card{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:10px 11px;margin-bottom:9px;display:flex;align-items:center;gap:9px;position:relative;overflow:hidden;}
-  .exercise-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;}
+  .exercise-card{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:10px 11px 10px 11px;margin-bottom:9px;position:relative;overflow:hidden;cursor:pointer;transition:all 0.25s ease;}
+  .exercise-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;transition:background 0.25s;}
   .exercise-card.acc-o::before{background:var(--orange);}
   .exercise-card.acc-g::before{background:var(--green);}
   .exercise-card.acc-r::before{background:var(--red);}
   .exercise-card.key{border-color:rgba(255,77,0,0.5);background:rgba(255,77,0,0.05);}
   .key-badge{position:absolute;top:5px;right:8px;font-size:8px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:0.5px;}
+  /* ETAT FAIT */
+  .exercise-card.done{background:#111 !important;border-color:#333 !important;}
+  .exercise-card.done::before{background:#333 !important;}
+  .exercise-card.done .ex-name{color:#555;text-decoration:line-through;}
+  .exercise-card.done .ex-target{color:#444;}
+  .exercise-card.done .sets-big{color:#444 !important;}
+  .exercise-card.done .sets-label{color:#333;}
+  .exercise-card.done .ex-thumb{opacity:0.3;}
+  .exercise-card.done .ex-num{background:#222 !important;color:#444 !important;}
+  .exercise-card.done .charge-row{opacity:0.4;}
+  .exercise-card.done .key-badge{display:none;}
+  .done-badge{position:absolute;top:8px;right:10px;font-size:16px;display:none;}
+  .exercise-card.done .done-badge{display:block;}
+  .exercise-card:active{transform:scale(0.985);}
 
-  /* ── THUMBNAILS ── */
+  /* ── EXERCICE FAIT ── */
+
+  .exercise-card.done-ex::before{background:#333 !important;}
+  .exercise-card.done-ex .ex-name{text-decoration:line-through;color:#555;}
+  .exercise-card.done-ex .ex-target{color:#444;}
+  .exercise-card.done-ex .sets-big{color:#444 !important;}
+  .exercise-card.done-ex .ex-thumb{opacity:0.4;}
+  .exercise-card.done-ex .key-badge{display:none;}
+  .done-badge{display:none;position:absolute;top:7px;right:9px;background:#1A2A1A;border:1px solid #2A4A2A;border-radius:20px;padding:2px 9px;font-size:10px;font-weight:700;color:var(--green);letter-spacing:0.5px;}
+  .exercise-card.done-ex .done-badge{display:block;}
+  .exercise-card.done-ex .charge-row{opacity:0.4;}
+
+  /* top row: thumb + num + info + sets */
+  .ex-top{display:flex;align-items:center;gap:9px;}
   .ex-thumb{width:60px;height:60px;border-radius:9px;flex-shrink:0;background:var(--dark3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:22px;overflow:hidden;}
   .ex-thumb img{width:100%;height:100%;object-fit:cover;border-radius:9px;}
-
   .ex-num{width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:13px;flex-shrink:0;}
   .num-o{background:rgba(255,77,0,0.15);color:var(--orange);}
   .num-g{background:rgba(0,212,106,0.12);color:var(--green);}
   .num-r{background:rgba(255,51,102,0.12);color:var(--red);}
-
   .ex-info{flex:1;min-width:0;}
   .ex-name{font-weight:600;font-size:13px;line-height:1.2;}
   .ex-target{font-size:11px;color:var(--muted);margin-top:2px;}
@@ -87,13 +159,26 @@
   .sets-big{font-family:'Bebas Neue',sans-serif;font-size:19px;line-height:1;}
   .sets-label{font-size:9px;color:var(--muted);}
 
-  /* ── SECTION LABEL ── */
+  /* ── CHARGE ROW ── */
+  .charge-row{display:flex;align-items:center;gap:8px;margin-top:10px;padding-top:9px;border-top:1px solid var(--border);}
+  .charge-label{font-size:11px;color:var(--muted);flex-shrink:0;}
+  .charge-input-wrap{display:flex;align-items:center;gap:6px;flex:1;}
+  .charge-btn{width:30px;height:30px;border-radius:8px;border:1px solid var(--border);background:var(--dark3);color:var(--text);font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:background 0.15s;}
+  .charge-btn:active{background:var(--border);}
+  .charge-val{flex:1;text-align:center;font-family:'Bebas Neue',sans-serif;font-size:22px;background:transparent;border:none;color:var(--text);outline:none;width:100%;}
+  .charge-unit{font-size:11px;color:var(--muted);flex-shrink:0;}
+  .charge-saved{font-size:9px;color:var(--green);flex-shrink:0;opacity:0;transition:opacity 0.3s;}
+  .charge-saved.show{opacity:1;}
+
   .sl{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin:14px 0 9px;display:flex;align-items:center;gap:8px;}
   .sl::after{content:'';flex:1;height:1px;background:var(--border);}
 
+
+  /* ── RESET SEANCE ── */
+  .reset-btn{width:100%;background:var(--dark3);color:var(--muted);border:1px solid var(--border);border-radius:10px;padding:10px;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1px;cursor:pointer;margin-bottom:12px;transition:all 0.2s;}
+  .reset-btn:active{background:var(--border);}
   .warm-card{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:10px 11px;margin-bottom:9px;display:flex;align-items:center;gap:9px;}
 
-  /* ── TIMER ── */
   .timer-box{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:14px;text-align:center;margin-bottom:9px;}
   .timer-label{font-size:11px;color:var(--muted);margin-bottom:6px;}
   .timer-display{font-family:'Bebas Neue',sans-serif;font-size:54px;line-height:1;padding:8px 0;display:none;}
@@ -102,28 +187,23 @@
   .rest-bar{height:4px;background:var(--border);border-radius:2px;margin-top:10px;overflow:hidden;}
   .rest-fill{height:100%;border-radius:2px;transition:width 1s linear;}
 
-  /* ── TAPIS ── */
   .tapis-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px;}
   .tapis-stat{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:12px;text-align:center;}
   .tapis-stat .big{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--blue);line-height:1;}
   .tapis-stat .unit{font-size:11px;color:var(--muted);}
   .tapis-stat .lbl{font-size:10px;color:var(--muted);margin-top:3px;}
-
   .phase-card{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:12px 14px;margin-bottom:9px;display:flex;align-items:center;gap:12px;}
   .ph-icon{font-size:22px;width:36px;text-align:center;flex-shrink:0;}
   .ph-info h3{font-size:13px;font-weight:600;}
   .ph-info p{font-size:11px;color:var(--muted);margin-top:2px;}
   .ph-time{margin-left:auto;font-family:'Bebas Neue',sans-serif;font-size:20px;flex-shrink:0;}
-
   .hr-zone{background:linear-gradient(135deg,rgba(0,180,255,0.08),rgba(0,212,106,0.08));border:1px solid rgba(0,180,255,0.25);border-radius:13px;padding:16px;margin-bottom:14px;text-align:center;}
   .bpm{font-family:'Bebas Neue',sans-serif;font-size:46px;background:linear-gradient(135deg,var(--blue),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
   .bpm-label{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:3px;}
-
   .adjust-table{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:12px 14px;margin-bottom:14px;}
   .adj-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px;}
   .adj-row:last-child{border-bottom:none;}
 
-  /* ── CHECKLIST ── */
   .checklist{background:var(--card);border:1px solid var(--border);border-radius:13px;overflow:hidden;margin-bottom:14px;}
   .check-item{display:flex;align-items:center;gap:11px;padding:12px 14px;border-bottom:1px solid var(--border);cursor:pointer;}
   .check-item:last-child{border-bottom:none;}
@@ -133,20 +213,17 @@
   .check-text{font-size:12px;flex:1;}
   .check-time{font-size:10px;color:var(--muted);flex-shrink:0;}
 
-  /* ── CONSEILS ── */
   .conseil-card{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:14px;margin-bottom:9px;}
   .conseil-card.hl{border-color:var(--yellow);background:rgba(255,214,0,0.04);}
   .conseil-hd{display:flex;align-items:center;gap:9px;margin-bottom:7px;}
   .conseil-ico{font-size:18px;}
   .conseil-title{font-weight:600;font-size:13px;}
   .conseil-body{font-size:12px;color:#BBB;line-height:1.6;}
-
   .prog-rule{background:var(--dark2);border:1px solid var(--orange);border-radius:13px;padding:14px;margin-bottom:14px;}
   .prog-rule h3{font-family:'Bebas Neue',sans-serif;font-size:17px;color:var(--orange);letter-spacing:1px;margin-bottom:7px;}
   .prog-row{display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px;}
   .prog-row:last-child{border-bottom:none;}
 
-  /* ── CALENDAR ── */
   .cal-week{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:14px;}
   .cal-day{background:var(--card);border:1px solid var(--border);border-radius:9px;padding:6px 3px;text-align:center;}
   .cal-day .dn{font-size:8px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;}
@@ -159,20 +236,17 @@
   .cal-day.ar{border-color:var(--red);background:rgba(255,51,102,0.08);}
   .cal-day.ar .dn{color:var(--red);}
 
-  /* ── INSTALL BANNER ── */
   .install-banner{background:linear-gradient(135deg,rgba(255,77,0,0.12),rgba(255,107,43,0.08));border:1px solid rgba(255,77,0,0.4);border-radius:13px;padding:14px;margin-bottom:14px;display:none;}
   .install-banner.show{display:flex;align-items:center;gap:12px;}
   .install-banner-text{flex:1;font-size:12px;color:var(--text);line-height:1.5;}
   .install-banner-text strong{color:var(--orange);}
   .install-btn{background:var(--orange);color:white;border:none;border-radius:10px;padding:10px 14px;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:1px;cursor:pointer;flex-shrink:0;white-space:nowrap;}
-
   .info-box{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:14px;margin-bottom:14px;font-size:12px;color:#aaa;line-height:1.6;}
   .info-box.green{background:rgba(0,212,106,0.07);border-color:rgba(0,212,106,0.3);}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="header">
   <div class="header-top">
     <div class="logo">BASIC FIT — MON PROGRAMME</div>
@@ -186,426 +260,890 @@
   </div>
 </div>
 
-<!-- TABS -->
 <div class="tabs">
   <div class="tab active" onclick="switchTab('lundi',this)">🔵 Lundi</div>
   <div class="tab" onclick="switchTab('mercredi',this)">🟢 Mercredi</div>
   <div class="tab" onclick="switchTab('samedi',this)">🔴 Samedi</div>
   <div class="tab" onclick="switchTab('tapis',this)">🏃 Tapis</div>
   <div class="tab" onclick="switchTab('conseils',this)">💡 Conseils</div>
+  <div class="tab" onclick="switchTab('suivi',this)">📈 Suivi</div>
 </div>
 
-<!-- PANELS -->
 <div class="panels">
 
-  <!-- ===== LUNDI ===== -->
-  <div id="panel-lundi" class="panel active">
-
-    <div id="install-banner" class="install-banner">
-      <div class="install-banner-text"><strong>📲 Installer l'appli</strong><br>Ajoute cette fiche à ton écran d'accueil pour l'avoir toujours sous la main, même sans wifi.</div>
-      <button class="install-btn" onclick="installApp()">INSTALLER</button>
+<!-- ===== LUNDI ===== -->
+<div id="panel-lundi" class="panel active">
+  <div id="install-banner" class="install-banner">
+    <div class="install-banner-text"><strong>📲 Installer l'appli</strong><br>Ajoute cette fiche à ton écran d'accueil pour l'avoir toujours sous la main, même sans wifi.</div>
+    <button class="install-btn" onclick="installApp()">INSTALLER</button>
+  </div>
+  <div class="session-header">
+    <div class="session-badge badge-o">🔵</div>
+    <div class="session-info">
+      <h2 style="color:var(--orange)">LUNDI — HAUT DU CORPS A</h2>
+      <p>Pectoraux · Dos · 40 min muscu + 40 min tapis</p>
     </div>
+  </div>
 
-    <div class="session-header">
-      <div class="session-badge badge-o">🔵</div>
-      <div class="session-info">
-        <h2 style="color:var(--orange)">LUNDI — HAUT DU CORPS A</h2>
-        <p>Pectoraux · Dos · 40 min muscu + 40 min tapis</p>
-      </div>
-    </div>
+  
+  <button class="reset-btn" onclick="resetSeance('panel-lundi')">↺ Réinitialiser la séance</button>
+<div class="sl">Échauffement</div>
+  <div class="warm-card">
+    <div class="ex-thumb">🚴</div>
+    <div class="ex-info"><div class="ex-name">Vélo ou marche légère</div><div class="ex-target">Monter progressivement la fréquence cardiaque</div></div>
+    <div class="ex-sets"><div class="sets-big" style="color:var(--orange)">5'</div><div class="sets-label">MIN</div></div>
+  </div>
 
-    <div class="sl">Échauffement</div>
-    <div class="warm-card">
-      <div class="ex-thumb">🚴</div>
-      <div class="ex-info"><div class="ex-name">Vélo ou marche légère</div><div class="ex-target">Monter progressivement la fréquence cardiaque</div></div>
-      <div class="ex-sets"><div class="sets-big" style="color:var(--orange)">5'</div><div class="sets-label">MIN</div></div>
-    </div>
+  <div class="sl">Pectoraux</div>
 
-    <div class="sl">Pectoraux</div>
-
-    <div class="exercise-card acc-o">
+  <div class="exercise-card acc-o" onclick="toggleDone(this)">
+    <span class="done-badge">✓ Fait</span>
+    <div class="ex-top">
       <div class="ex-thumb"><img src="https://bodybuilding-wizard.com/wp-content/uploads/2014/04/pec-deck-flyes-1.jpg" alt="Pec Deck" onerror="this.parentNode.textContent='🦋'"></div>
       <div class="ex-num num-o">1</div>
       <div class="ex-info"><div class="ex-name">Pec Deck (Butterfly)</div><div class="ex-target">Pectoraux isolés</div></div>
       <div class="ex-sets"><div class="sets-big" style="color:var(--orange)">3×12</div><div class="sets-label">REPS</div></div>
     </div>
+    <div class="charge-row">
+      <span class="charge-label">💪 Charge :</span>
+      <div class="charge-input-wrap">
+        <div class="charge-btn" onclick="changeCharge('L1',-5)">−</div>
+        <input class="charge-val" id="charge-L1" type="number" value="0" min="0" max="300" step="5" oninput="saveCharge('L1',this.value)">
+        <div class="charge-btn" onclick="changeCharge('L1',5)">+</div>
+      </div>
+      <span class="charge-unit">kg</span>
+      <span class="charge-saved" id="saved-L1">✓ sauvegardé</span>
+    </div>
+  </div>
 
-    <div class="exercise-card acc-o">
+  <div class="exercise-card acc-o" onclick="toggleDone(this)">
+    <span class="done-badge">✓ Fait</span>
+    <div class="ex-top">
       <div class="ex-thumb"><img src="https://weighttraining.guide/wp-content/uploads/2016/10/machine-chest-press.png" alt="Chest Press" onerror="this.parentNode.textContent='🏋️'"></div>
       <div class="ex-num num-o">2</div>
       <div class="ex-info"><div class="ex-name">Chest Press machine</div><div class="ex-target">Pecs + triceps</div></div>
       <div class="ex-sets"><div class="sets-big" style="color:var(--orange)">3×12</div><div class="sets-label">REPS</div></div>
     </div>
+    <div class="charge-row">
+      <span class="charge-label">💪 Charge :</span>
+      <div class="charge-input-wrap">
+        <div class="charge-btn" onclick="changeCharge('L2',-5)">−</div>
+        <input class="charge-val" id="charge-L2" type="number" value="0" min="0" max="300" step="5" oninput="saveCharge('L2',this.value)">
+        <div class="charge-btn" onclick="changeCharge('L2',5)">+</div>
+      </div>
+      <span class="charge-unit">kg</span>
+      <span class="charge-saved" id="saved-L2">✓ sauvegardé</span>
+    </div>
+  </div>
 
-    <div class="sl">Dos</div>
+  <div class="sl">Dos</div>
 
-    <div class="exercise-card acc-o">
+  <div class="exercise-card acc-o" onclick="toggleDone(this)">
+    <span class="done-badge">✓ Fait</span>
+    <div class="ex-top">
       <div class="ex-thumb"><img src="https://bodybuilding-wizard.com/wp-content/uploads/2015/03/machine-lat-pulldown-1.jpg" alt="Lat Pulldown" onerror="this.parentNode.textContent='⬇️'"></div>
       <div class="ex-num num-o">3</div>
       <div class="ex-info"><div class="ex-name">Tirage vertical (Lat Pulldown)</div><div class="ex-target">Grand dorsal</div></div>
       <div class="ex-sets"><div class="sets-big" style="color:var(--orange)">3×12</div><div class="sets-label">REPS</div></div>
     </div>
+    <div class="charge-row">
+      <span class="charge-label">💪 Charge :</span>
+      <div class="charge-input-wrap">
+        <div class="charge-btn" onclick="changeCharge('L3',-5)">−</div>
+        <input class="charge-val" id="charge-L3" type="number" value="0" min="0" max="300" step="5" oninput="saveCharge('L3',this.value)">
+        <div class="charge-btn" onclick="changeCharge('L3',5)">+</div>
+      </div>
+      <span class="charge-unit">kg</span>
+      <span class="charge-saved" id="saved-L3">✓ sauvegardé</span>
+    </div>
+  </div>
 
-    <div class="exercise-card acc-o">
+  <div class="exercise-card acc-o" onclick="toggleDone(this)">
+    <span class="done-badge">✓ Fait</span>
+    <div class="ex-top">
       <div class="ex-thumb"><img src="https://www.inspireusafoundation.org/wp-content/uploads/2022/04/seated-cable-row.gif" alt="Cable Row" onerror="this.parentNode.textContent='🚣'"></div>
       <div class="ex-num num-o">4</div>
       <div class="ex-info"><div class="ex-name">Rowing machine assise</div><div class="ex-target">Dos moyen + biceps</div></div>
       <div class="ex-sets"><div class="sets-big" style="color:var(--orange)">3×12</div><div class="sets-label">REPS</div></div>
     </div>
+    <div class="charge-row">
+      <span class="charge-label">💪 Charge :</span>
+      <div class="charge-input-wrap">
+        <div class="charge-btn" onclick="changeCharge('L4',-5)">−</div>
+        <input class="charge-val" id="charge-L4" type="number" value="0" min="0" max="300" step="5" oninput="saveCharge('L4',this.value)">
+        <div class="charge-btn" onclick="changeCharge('L4',5)">+</div>
+      </div>
+      <span class="charge-unit">kg</span>
+      <span class="charge-saved" id="saved-L4">✓ sauvegardé</span>
+    </div>
+  </div>
 
-    <div class="exercise-card acc-o">
+  <div class="exercise-card acc-o" onclick="toggleDone(this)">
+    <span class="done-badge">✓ Fait</span>
+    <div class="ex-top">
       <div class="ex-thumb"><img src="https://www.inspireusafoundation.org/wp-content/uploads/2022/09/cable-face-pull.gif" alt="Face Pull" onerror="this.parentNode.textContent='🎯'"></div>
       <div class="ex-num num-o">5</div>
       <div class="ex-info"><div class="ex-name">Face Pull (poulie haute)</div><div class="ex-target">Épaules arrière + posture</div></div>
       <div class="ex-sets"><div class="sets-big" style="color:var(--orange)">2×15</div><div class="sets-label">REPS</div></div>
     </div>
-
-    <div class="sl">Minuteur repos</div>
-    <div class="timer-box">
-      <div class="timer-label">60 secondes entre chaque série</div>
-      <div id="td-lundi" class="timer-display" style="color:var(--orange)">1:00</div>
-      <button class="timer-btn" id="tb-lundi" style="background:var(--orange)" onclick="startTimer('lundi')">⏱ LANCER 60 SECONDES</button>
-      <div class="rest-bar"><div id="rb-lundi" class="rest-fill" style="width:100%;background:var(--orange)"></div></div>
+    <div class="charge-row">
+      <span class="charge-label">💪 Charge :</span>
+      <div class="charge-input-wrap">
+        <div class="charge-btn" onclick="changeCharge('L5',-5)">−</div>
+        <input class="charge-val" id="charge-L5" type="number" value="0" min="0" max="300" step="5" oninput="saveCharge('L5',this.value)">
+        <div class="charge-btn" onclick="changeCharge('L5',5)">+</div>
+      </div>
+      <span class="charge-unit">kg</span>
+      <span class="charge-saved" id="saved-L5">✓ sauvegardé</span>
     </div>
   </div>
 
-  <!-- ===== MERCREDI ===== -->
-  <div id="panel-mercredi" class="panel">
-    <div class="session-header">
-      <div class="session-badge badge-g">🟢</div>
-      <div class="session-info">
-        <h2 style="color:var(--green)">MERCREDI — BAS DU CORPS</h2>
-        <p>Cuisses · Fessiers · Ischios — Séance clé</p>
-      </div>
+  <div class="sl">Minuteur repos</div>
+  <div class="timer-box">
+    <div class="timer-label">60 secondes entre chaque série</div>
+    <div id="td-lundi" class="timer-display" style="color:var(--orange)">1:00</div>
+    <button class="timer-btn" id="tb-lundi" style="background:var(--orange)" onclick="startTimer('lundi')">⏱ LANCER 60 SECONDES</button>
+    <div class="rest-bar"><div id="rb-lundi" class="rest-fill" style="width:100%;background:var(--orange)"></div></div>
+  </div>
+</div>
+
+<!-- ===== MERCREDI ===== -->
+<div id="panel-mercredi" class="panel">
+  <div class="session-header">
+    <div class="session-badge badge-g">🟢</div>
+    <div class="session-info">
+      <h2 style="color:var(--green)">MERCREDI — BAS DU CORPS</h2>
+      <p>Cuisses · Fessiers · Ischios — Séance clé</p>
     </div>
+  </div>
+  <div class="info-box green">
+    💡 <strong style="color:var(--green)">Séance prioritaire.</strong> 60% de ta masse musculaire. Clé pour brûler la graisse viscérale et améliorer la sensibilité à l'insuline.
+  </div>
 
-    <div class="info-box green">
-      💡 <strong style="color:var(--green)">Séance prioritaire.</strong> 60% de ta masse musculaire totale. Clé pour brûler la graisse viscérale et améliorer la sensibilité à l'insuline.
-    </div>
+  
+  <button class="reset-btn" onclick="resetSeance('panel-mercredi')">↺ Réinitialiser la séance</button>
+<div class="sl">Échauffement</div>
+  <div class="warm-card">
+    <div class="ex-thumb">🚴</div>
+    <div class="ex-info"><div class="ex-name">Vélo ou marche légère</div><div class="ex-target">Activer les jambes avant la charge</div></div>
+    <div class="ex-sets"><div class="sets-big" style="color:var(--green)">5'</div><div class="sets-label">MIN</div></div>
+  </div>
 
-    <div class="sl">Échauffement</div>
-    <div class="warm-card">
-      <div class="ex-thumb">🚴</div>
-      <div class="ex-info"><div class="ex-name">Vélo ou marche légère</div><div class="ex-target">Activer les jambes avant la charge</div></div>
-      <div class="ex-sets"><div class="sets-big" style="color:var(--green)">5'</div><div class="sets-label">MIN</div></div>
-    </div>
+  <div class="sl">Cuisses & Fessiers</div>
 
-    <div class="sl">Cuisses & Fessiers</div>
-
-    <div class="exercise-card acc-g key">
-      <span class="key-badge">★ PRIORITÉ</span>
+  <div class="exercise-card acc-g key" onclick="toggleDone(this)">
+    <span class="done-badge">✅</span>
+    <span class="key-badge">★ PRIORITÉ</span>
+    <span class="done-badge">✓ Fait</span>
+    <div class="ex-top">
       <div class="ex-thumb"><img src="https://www.inspireusafoundation.org/wp-content/uploads/2022/04/leg-press.gif" alt="Leg Press" onerror="this.parentNode.textContent='🦵'"></div>
       <div class="ex-num num-g">1</div>
       <div class="ex-info"><div class="ex-name">Leg Press (Presse à cuisses)</div><div class="ex-target">Quads + fessiers — exercice roi</div></div>
       <div class="ex-sets"><div class="sets-big" style="color:var(--green)">4×12</div><div class="sets-label">REPS</div></div>
     </div>
+    <div class="charge-row">
+      <span class="charge-label">💪 Charge :</span>
+      <div class="charge-input-wrap">
+        <div class="charge-btn" onclick="changeCharge('M1',-5)">−</div>
+        <input class="charge-val" id="charge-M1" type="number" value="0" min="0" max="500" step="5" oninput="saveCharge('M1',this.value)">
+        <div class="charge-btn" onclick="changeCharge('M1',5)">+</div>
+      </div>
+      <span class="charge-unit">kg</span>
+      <span class="charge-saved" id="saved-M1">✓ sauvegardé</span>
+    </div>
+  </div>
 
-    <div class="exercise-card acc-g">
+  <div class="exercise-card acc-g" onclick="toggleDone(this)">
+    <span class="done-badge">✓ Fait</span>
+    <div class="ex-top">
       <div class="ex-thumb"><img src="https://www.inspireusafoundation.org/wp-content/uploads/2022/01/leg-extension.gif" alt="Leg Extension" onerror="this.parentNode.textContent='🦵'"></div>
       <div class="ex-num num-g">2</div>
       <div class="ex-info"><div class="ex-name">Leg Extension</div><div class="ex-target">Quadriceps isolés</div></div>
       <div class="ex-sets"><div class="sets-big" style="color:var(--green)">3×12</div><div class="sets-label">REPS</div></div>
     </div>
+    <div class="charge-row">
+      <span class="charge-label">💪 Charge :</span>
+      <div class="charge-input-wrap">
+        <div class="charge-btn" onclick="changeCharge('M2',-5)">−</div>
+        <input class="charge-val" id="charge-M2" type="number" value="0" min="0" max="300" step="5" oninput="saveCharge('M2',this.value)">
+        <div class="charge-btn" onclick="changeCharge('M2',5)">+</div>
+      </div>
+      <span class="charge-unit">kg</span>
+      <span class="charge-saved" id="saved-M2">✓ sauvegardé</span>
+    </div>
+  </div>
 
-    <div class="exercise-card acc-g">
+  <div class="exercise-card acc-g" onclick="toggleDone(this)">
+    <span class="done-badge">✓ Fait</span>
+    <div class="ex-top">
       <div class="ex-thumb"><img src="https://www.inspireusafoundation.org/wp-content/uploads/2022/01/lying-leg-curl.gif" alt="Leg Curl" onerror="this.parentNode.textContent='🦵'"></div>
       <div class="ex-num num-g">3</div>
       <div class="ex-info"><div class="ex-name">Leg Curl (couché ou assis)</div><div class="ex-target">Ischios-jambiers</div></div>
       <div class="ex-sets"><div class="sets-big" style="color:var(--green)">3×12</div><div class="sets-label">REPS</div></div>
     </div>
+    <div class="charge-row">
+      <span class="charge-label">💪 Charge :</span>
+      <div class="charge-input-wrap">
+        <div class="charge-btn" onclick="changeCharge('M3',-5)">−</div>
+        <input class="charge-val" id="charge-M3" type="number" value="0" min="0" max="300" step="5" oninput="saveCharge('M3',this.value)">
+        <div class="charge-btn" onclick="changeCharge('M3',5)">+</div>
+      </div>
+      <span class="charge-unit">kg</span>
+      <span class="charge-saved" id="saved-M3">✓ sauvegardé</span>
+    </div>
+  </div>
 
-    <div class="exercise-card acc-g">
+  <div class="exercise-card acc-g" onclick="toggleDone(this)">
+    <span class="done-badge">✓ Fait</span>
+    <div class="ex-top">
       <div class="ex-thumb"><img src="https://www.inspireusafoundation.org/wp-content/uploads/2022/03/hip-abduction-machine.gif" alt="Hip Abductor" onerror="this.parentNode.textContent='🍑'"></div>
       <div class="ex-num num-g">4</div>
       <div class="ex-info"><div class="ex-name">Hip Abductor machine</div><div class="ex-target">Fessiers moyens</div></div>
       <div class="ex-sets"><div class="sets-big" style="color:var(--green)">2×20</div><div class="sets-label">REPS</div></div>
     </div>
+    <div class="charge-row">
+      <span class="charge-label">💪 Charge :</span>
+      <div class="charge-input-wrap">
+        <div class="charge-btn" onclick="changeCharge('M4',-5)">−</div>
+        <input class="charge-val" id="charge-M4" type="number" value="0" min="0" max="300" step="5" oninput="saveCharge('M4',this.value)">
+        <div class="charge-btn" onclick="changeCharge('M4',5)">+</div>
+      </div>
+      <span class="charge-unit">kg</span>
+      <span class="charge-saved" id="saved-M4">✓ sauvegardé</span>
+    </div>
+  </div>
 
-    <div class="exercise-card acc-g">
+  <div class="exercise-card acc-g" onclick="toggleDone(this)">
+    <span class="done-badge">✓ Fait</span>
+    <div class="ex-top">
       <div class="ex-thumb">🦶</div>
       <div class="ex-num num-g">5</div>
       <div class="ex-info"><div class="ex-name">Mollets à la Leg Press</div><div class="ex-target">Pieds en bas de la plateforme</div></div>
       <div class="ex-sets"><div class="sets-big" style="color:var(--green)">2×20</div><div class="sets-label">REPS</div></div>
     </div>
-
-    <div class="sl">Minuteur repos</div>
-    <div class="timer-box">
-      <div class="timer-label">60 secondes entre chaque série</div>
-      <div id="td-mercredi" class="timer-display" style="color:var(--green)">1:00</div>
-      <button class="timer-btn" id="tb-mercredi" style="background:var(--green)" onclick="startTimer('mercredi')">⏱ LANCER 60 SECONDES</button>
-      <div class="rest-bar"><div id="rb-mercredi" class="rest-fill" style="width:100%;background:var(--green)"></div></div>
+    <div class="charge-row">
+      <span class="charge-label">💪 Charge :</span>
+      <div class="charge-input-wrap">
+        <div class="charge-btn" onclick="changeCharge('M5',-5)">−</div>
+        <input class="charge-val" id="charge-M5" type="number" value="0" min="0" max="300" step="5" oninput="saveCharge('M5',this.value)">
+        <div class="charge-btn" onclick="changeCharge('M5',5)">+</div>
+      </div>
+      <span class="charge-unit">kg</span>
+      <span class="charge-saved" id="saved-M5">✓ sauvegardé</span>
     </div>
   </div>
 
-  <!-- ===== SAMEDI ===== -->
-  <div id="panel-samedi" class="panel">
-    <div class="session-header">
-      <div class="session-badge badge-r">🔴</div>
-      <div class="session-info">
-        <h2 style="color:var(--red)">SAMEDI — HAUT DU CORPS B</h2>
-        <p>Épaules · Biceps · Triceps</p>
-      </div>
+  <div class="sl">Minuteur repos</div>
+  <div class="timer-box">
+    <div class="timer-label">60 secondes entre chaque série</div>
+    <div id="td-mercredi" class="timer-display" style="color:var(--green)">1:00</div>
+    <button class="timer-btn" id="tb-mercredi" style="background:var(--green)" onclick="startTimer('mercredi')">⏱ LANCER 60 SECONDES</button>
+    <div class="rest-bar"><div id="rb-mercredi" class="rest-fill" style="width:100%;background:var(--green)"></div></div>
+  </div>
+</div>
+
+<!-- ===== SAMEDI ===== -->
+<div id="panel-samedi" class="panel">
+  <div class="session-header">
+    <div class="session-badge badge-r">🔴</div>
+    <div class="session-info">
+      <h2 style="color:var(--red)">SAMEDI — HAUT DU CORPS B</h2>
+      <p>Épaules · Biceps · Triceps</p>
     </div>
+  </div>
 
-    <div class="sl">Échauffement</div>
-    <div class="warm-card">
-      <div class="ex-thumb">🚴</div>
-      <div class="ex-info"><div class="ex-name">Vélo ou marche légère</div><div class="ex-target">5 minutes d'activation</div></div>
-      <div class="ex-sets"><div class="sets-big" style="color:var(--red)">5'</div><div class="sets-label">MIN</div></div>
-    </div>
+  
+  <button class="reset-btn" onclick="resetSeance('panel-samedi')">↺ Réinitialiser la séance</button>
+<div class="sl">Échauffement</div>
+  <div class="warm-card">
+    <div class="ex-thumb">🚴</div>
+    <div class="ex-info"><div class="ex-name">Vélo ou marche légère</div><div class="ex-target">5 minutes d'activation</div></div>
+    <div class="ex-sets"><div class="sets-big" style="color:var(--red)">5'</div><div class="sets-label">MIN</div></div>
+  </div>
 
-    <div class="sl">Épaules</div>
+  <div class="sl">Épaules</div>
 
-    <div class="exercise-card acc-r">
+  <div class="exercise-card acc-r" onclick="toggleDone(this)">
+    <span class="done-badge">✓ Fait</span>
+    <div class="ex-top">
       <div class="ex-thumb"><img src="https://www.inspireusafoundation.org/wp-content/uploads/2022/04/machine-shoulder-press.gif" alt="Shoulder Press" onerror="this.parentNode.textContent='💪'"></div>
       <div class="ex-num num-r">1</div>
       <div class="ex-info"><div class="ex-name">Shoulder Press machine</div><div class="ex-target">Deltoïdes</div></div>
       <div class="ex-sets"><div class="sets-big" style="color:var(--red)">3×12</div><div class="sets-label">REPS</div></div>
     </div>
+    <div class="charge-row">
+      <span class="charge-label">💪 Charge :</span>
+      <div class="charge-input-wrap">
+        <div class="charge-btn" onclick="changeCharge('S1',-5)">−</div>
+        <input class="charge-val" id="charge-S1" type="number" value="0" min="0" max="300" step="5" oninput="saveCharge('S1',this.value)">
+        <div class="charge-btn" onclick="changeCharge('S1',5)">+</div>
+      </div>
+      <span class="charge-unit">kg</span>
+      <span class="charge-saved" id="saved-S1">✓ sauvegardé</span>
+    </div>
+  </div>
 
-    <div class="exercise-card acc-r">
+  <div class="exercise-card acc-r" onclick="toggleDone(this)">
+    <span class="done-badge">✓ Fait</span>
+    <div class="ex-top">
       <div class="ex-thumb"><img src="https://homegymreview.co.uk/wp-content/uploads/2021/02/Cable-Lateral-Raise-1.jpg" alt="Lateral Raise" onerror="this.parentNode.textContent='↔️'"></div>
       <div class="ex-num num-r">2</div>
       <div class="ex-info"><div class="ex-name">Lateral Raise (poulie basse)</div><div class="ex-target">Épaules latérales</div></div>
       <div class="ex-sets"><div class="sets-big" style="color:var(--red)">2×15</div><div class="sets-label">REPS</div></div>
     </div>
+    <div class="charge-row">
+      <span class="charge-label">💪 Charge :</span>
+      <div class="charge-input-wrap">
+        <div class="charge-btn" onclick="changeCharge('S2',-5)">−</div>
+        <input class="charge-val" id="charge-S2" type="number" value="0" min="0" max="300" step="5" oninput="saveCharge('S2',this.value)">
+        <div class="charge-btn" onclick="changeCharge('S2',5)">+</div>
+      </div>
+      <span class="charge-unit">kg</span>
+      <span class="charge-saved" id="saved-S2">✓ sauvegardé</span>
+    </div>
+  </div>
 
-    <div class="sl">Bras</div>
+  <div class="sl">Bras</div>
 
-    <div class="exercise-card acc-r">
+  <div class="exercise-card acc-r" onclick="toggleDone(this)">
+    <span class="done-badge">✓ Fait</span>
+    <div class="ex-top">
       <div class="ex-thumb"><img src="https://www.inspireusafoundation.org/wp-content/uploads/2022/01/machine-bicep-curl.gif" alt="Bicep Curl" onerror="this.parentNode.textContent='💪'"></div>
       <div class="ex-num num-r">3</div>
       <div class="ex-info"><div class="ex-name">Curl Biceps machine</div><div class="ex-target">Biceps isolés</div></div>
       <div class="ex-sets"><div class="sets-big" style="color:var(--red)">3×12</div><div class="sets-label">REPS</div></div>
     </div>
+    <div class="charge-row">
+      <span class="charge-label">💪 Charge :</span>
+      <div class="charge-input-wrap">
+        <div class="charge-btn" onclick="changeCharge('S3',-5)">−</div>
+        <input class="charge-val" id="charge-S3" type="number" value="0" min="0" max="300" step="5" oninput="saveCharge('S3',this.value)">
+        <div class="charge-btn" onclick="changeCharge('S3',5)">+</div>
+      </div>
+      <span class="charge-unit">kg</span>
+      <span class="charge-saved" id="saved-S3">✓ sauvegardé</span>
+    </div>
+  </div>
 
-    <div class="exercise-card acc-r">
+  <div class="exercise-card acc-r" onclick="toggleDone(this)">
+    <span class="done-badge">✓ Fait</span>
+    <div class="ex-top">
       <div class="ex-thumb"><img src="https://fitnessvolt.com/wp-content/uploads/2019/11/tricep-rope-pushdown.gif" alt="Triceps Pushdown" onerror="this.parentNode.textContent='💥'"></div>
       <div class="ex-num num-r">4</div>
       <div class="ex-info"><div class="ex-name">Triceps Pushdown (corde)</div><div class="ex-target">Triceps isolés</div></div>
       <div class="ex-sets"><div class="sets-big" style="color:var(--red)">3×12</div><div class="sets-label">REPS</div></div>
     </div>
+    <div class="charge-row">
+      <span class="charge-label">💪 Charge :</span>
+      <div class="charge-input-wrap">
+        <div class="charge-btn" onclick="changeCharge('S4',-5)">−</div>
+        <input class="charge-val" id="charge-S4" type="number" value="0" min="0" max="300" step="5" oninput="saveCharge('S4',this.value)">
+        <div class="charge-btn" onclick="changeCharge('S4',5)">+</div>
+      </div>
+      <span class="charge-unit">kg</span>
+      <span class="charge-saved" id="saved-S4">✓ sauvegardé</span>
+    </div>
+  </div>
 
-    <div class="exercise-card acc-r">
+  <div class="exercise-card acc-r" onclick="toggleDone(this)">
+    <span class="done-badge">✓ Fait</span>
+    <div class="ex-top">
       <div class="ex-thumb"><img src="https://homegymreview.co.uk/wp-content/uploads/2021/04/Cable-Upright-Row-female.jpg" alt="Rowing menton" onerror="this.parentNode.textContent='⬆️'"></div>
       <div class="ex-num num-r">5</div>
       <div class="ex-info"><div class="ex-name">Rowing menton (poulie basse)</div><div class="ex-target">Trapèzes + deltoïdes</div></div>
       <div class="ex-sets"><div class="sets-big" style="color:var(--red)">2×15</div><div class="sets-label">REPS</div></div>
     </div>
-
-    <div class="sl">Minuteur repos</div>
-    <div class="timer-box">
-      <div class="timer-label">60 secondes entre chaque série</div>
-      <div id="td-samedi" class="timer-display" style="color:var(--red)">1:00</div>
-      <button class="timer-btn" id="tb-samedi" style="background:var(--red)" onclick="startTimer('samedi')">⏱ LANCER 60 SECONDES</button>
-      <div class="rest-bar"><div id="rb-samedi" class="rest-fill" style="width:100%;background:var(--red)"></div></div>
+    <div class="charge-row">
+      <span class="charge-label">💪 Charge :</span>
+      <div class="charge-input-wrap">
+        <div class="charge-btn" onclick="changeCharge('S5',-5)">−</div>
+        <input class="charge-val" id="charge-S5" type="number" value="0" min="0" max="300" step="5" oninput="saveCharge('S5',this.value)">
+        <div class="charge-btn" onclick="changeCharge('S5',5)">+</div>
+      </div>
+      <span class="charge-unit">kg</span>
+      <span class="charge-saved" id="saved-S5">✓ sauvegardé</span>
     </div>
   </div>
 
-  <!-- ===== TAPIS ===== -->
-  <div id="panel-tapis" class="panel">
-    <div class="session-header">
-      <div class="session-badge" style="background:rgba(0,180,255,0.12)">🏃</div>
-      <div class="session-info">
-        <h2 style="color:var(--blue)">TAPIS INCLINÉ</h2>
-        <p>Protocole cardio — après la musculation</p>
+  <div class="sl">Minuteur repos</div>
+  <div class="timer-box">
+    <div class="timer-label">60 secondes entre chaque série</div>
+    <div id="td-samedi" class="timer-display" style="color:var(--red)">1:00</div>
+    <button class="timer-btn" id="tb-samedi" style="background:var(--red)" onclick="startTimer('samedi')">⏱ LANCER 60 SECONDES</button>
+    <div class="rest-bar"><div id="rb-samedi" class="rest-fill" style="width:100%;background:var(--red)"></div></div>
+  </div>
+</div>
+
+<!-- ===== TAPIS ===== -->
+<div id="panel-tapis" class="panel">
+  <div class="session-header">
+    <div class="session-badge" style="background:rgba(0,180,255,0.12)">🏃</div>
+    <div class="session-info"><h2 style="color:var(--blue)">TAPIS INCLINÉ</h2><p>Protocole cardio — après la musculation</p></div>
+  </div>
+  <div class="hr-zone">
+    <div class="bpm">146–156</div>
+    <div class="bpm-label">BPM — Zone de combustion des graisses</div>
+  </div>
+  <div class="tapis-grid">
+    <div class="tapis-stat"><div class="big">40</div><div class="unit">min</div><div class="lbl">Durée cible</div></div>
+    <div class="tapis-stat"><div class="big">15%</div><div class="unit">max</div><div class="lbl">Pente maximale</div></div>
+    <div class="tapis-stat"><div class="big">5</div><div class="unit">km/h</div><div class="lbl">Vitesse départ</div></div>
+    <div class="tapis-stat"><div class="big">3.2</div><div class="unit">km/h</div><div class="lbl">Vitesse min à 15%</div></div>
+  </div>
+  <div class="sl">Déroulement</div>
+  <div class="phase-card"><div class="ph-icon">📈</div><div class="ph-info"><h3>Montée progressive</h3><p>8% → 15% · 5 km/h · +1% toutes les 5 min</p></div><div class="ph-time" style="color:var(--blue)">20'</div></div>
+  <div class="phase-card"><div class="ph-icon">🎯</div><div class="ph-info"><h3>Zone cible maintenue</h3><p>15% fixe · Vitesse ajustée pour 146–156 bpm</p></div><div class="ph-time" style="color:var(--green)">15'</div></div>
+  <div class="phase-card"><div class="ph-icon">📉</div><div class="ph-info"><h3>Retour au calme</h3><p>15% → 5% · 3,5 km/h · Ne jamais s'arrêter brutalement</p></div><div class="ph-time" style="color:var(--yellow)">5'</div></div>
+  <div class="sl">Ajustement vitesse</div>
+  <div class="adjust-table">
+    <div class="adj-row"><span>FC &gt; 156 bpm</span><span style="color:var(--red);font-weight:600;">↓ Baisser vitesse</span></div>
+    <div class="adj-row"><span>FC entre 146–156</span><span style="color:var(--green);font-weight:600;">✓ Maintenir</span></div>
+    <div class="adj-row"><span>FC &lt; 146 bpm</span><span style="color:var(--orange);font-weight:600;">↑ Augmenter vitesse</span></div>
+  </div>
+</div>
+
+<!-- ===== CONSEILS ===== -->
+<div id="panel-conseils" class="panel">
+  <div class="sl">Checklist séance</div>
+  <div class="checklist">
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">🚴 5 min échauffement vélo / marche</span><span class="check-time">5 min</span></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">💪 40 min machines (selon le jour)</span><span class="check-time">40 min</span></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">🏃 40 min tapis incliné zone 146–156</span><span class="check-time">40 min</span></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">🧘 5 min étirements debout</span><span class="check-time">5 min</span></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">💧 Hydratation tout au long</span><span class="check-time">—</span></div>
+  </div>
+  <div class="sl">Règle de progression</div>
+  <div class="prog-rule">
+    <h3>⚡ LA RÈGLE DES 15 REPS</h3>
+    <div class="prog-row"><span style="width:24px;text-align:center">✅</span><span>Tu arrives à <strong>15 reps</strong> sur les 3 séries</span></div>
+    <div class="prog-row"><span style="width:24px;text-align:center">➡️</span><span>Semaine suivante : <strong>+5 kg</strong></span></div>
+    <div class="prog-row"><span style="width:24px;text-align:center">❌</span><span>Tu n'arrives pas à 15 → <strong>même poids</strong></span></div>
+  </div>
+  <div class="sl">Conseils clés</div>
+  <div class="conseil-card hl"><div class="conseil-hd"><span class="conseil-ico">🧀</span><span class="conseil-title">Fromage — max 30g/jour</span></div><div class="conseil-body">Pèse-le pendant 2 semaines pour calibrer ton œil.</div></div>
+  <div class="conseil-card"><div class="conseil-hd"><span class="conseil-ico">🥩</span><span class="conseil-title">Protéines — 1,6g/kg/jour</span></div><div class="conseil-body">Soit ~145g/jour. Œufs, poulet, poisson, yaourt grec.</div></div>
+  <div class="conseil-card"><div class="conseil-hd"><span class="conseil-ico">😴</span><span class="conseil-title">Sommeil — tu coches cette case ✅</span></div><div class="conseil-body">7–9h/nuit parfait. L'hormone de croissance brûle la graisse viscérale pendant le sommeil.</div></div>
+  <div class="conseil-card"><div class="conseil-hd"><span class="conseil-ico">📅</span><span class="conseil-title">Vacances — 4ème séance jeudi</span></div><div class="conseil-body">Bas du corps (Mercredi) ou Haut A allégé selon ta fatigue.</div></div>
+  <div class="sl">Planning semaine type</div>
+  <div class="cal-week">
+    <div class="cal-day ao"><div class="dn">Lun</div><div class="di">🔵</div><div class="dl">Haut A</div></div>
+    <div class="cal-day"><div class="dn">Mar</div><div class="di">😴</div><div class="dl">Repos</div></div>
+    <div class="cal-day ag"><div class="dn">Mer</div><div class="di">🟢</div><div class="dl">Bas</div></div>
+    <div class="cal-day"><div class="dn">Jeu</div><div class="di">😴</div><div class="dl">Repos</div></div>
+    <div class="cal-day"><div class="dn">Ven</div><div class="di">😴</div><div class="dl">Repos</div></div>
+    <div class="cal-day ar"><div class="dn">Sam</div><div class="di">🔴</div><div class="dl">Haut B</div></div>
+    <div class="cal-day"><div class="dn">Dim</div><div class="di">😴</div><div class="dl">Repos</div></div>
+  </div>
+</div>
+
+</div><!-- /panels -->
+
+<!-- ===== SUIVI ===== -->
+<div id="panel-suivi" class="panel" style="display:none;">
+
+  <!-- Hero progression -->
+  <div class="suivi-hero" id="suivi-hero">
+    <div class="big-pct" id="hero-pct">28%</div>
+    <div class="sub">Masse grasse actuelle → objectif 17%</div>
+    <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-top:10px;margin-bottom:4px;">
+      <span>Départ : 28%</span><span id="hero-avancement">0% accompli</span><span>Objectif : 17%</span>
+    </div>
+    <div class="progress-wrap"><div class="progress-fill" id="hero-bar" style="width:0%"></div></div>
+  </div>
+
+  <!-- Stats résumé -->
+  <div class="stats-grid" id="stats-grid">
+    <div class="stat-box"><div class="sv" id="stat-perdu" style="color:var(--green)">0</div><div class="sl2">kg de graisse<br>perdus</div></div>
+    <div class="stat-box"><div class="sv" id="stat-restant" style="color:var(--orange)">10</div><div class="sl2">kg restants<br>à perdre</div></div>
+    <div class="stat-box"><div class="sv" id="stat-mois" style="color:#C084FC">15</div><div class="sl2">mois restants<br>avant juin 27</div></div>
+  </div>
+
+  <!-- Saisie mensuelle -->
+  <div class="saisie-card">
+    <h3>📝 SAISIR MA MESURE DU MOIS</h3>
+    <div class="saisie-grid">
+      <div class="saisie-field">
+        <label>Poids (kg)</label>
+        <input type="number" id="input-poids" placeholder="91" step="0.1" min="50" max="200">
+      </div>
+      <div class="saisie-field">
+        <label>Masse grasse (%)</label>
+        <input type="number" id="input-mg" placeholder="28" step="0.1" min="5" max="50">
+      </div>
+      <div class="saisie-field">
+        <label>Masse musculaire (%)</label>
+        <input type="number" id="input-mm" placeholder="69" step="0.1" min="30" max="90">
+      </div>
+      <div class="saisie-field">
+        <label>Date</label>
+        <input type="month" id="input-date">
+      </div>
+      <div class="saisie-field full">
+        <label>Note (optionnel)</label>
+        <textarea id="input-note" placeholder="Ex : bonne période, vacances, blessure..."></textarea>
       </div>
     </div>
-
-    <div class="hr-zone">
-      <div class="bpm">146–156</div>
-      <div class="bpm-label">BPM — Zone de combustion des graisses</div>
-    </div>
-
-    <div class="tapis-grid">
-      <div class="tapis-stat"><div class="big">40</div><div class="unit">min</div><div class="lbl">Durée cible</div></div>
-      <div class="tapis-stat"><div class="big">15%</div><div class="unit">max</div><div class="lbl">Pente maximale</div></div>
-      <div class="tapis-stat"><div class="big">5</div><div class="unit">km/h</div><div class="lbl">Vitesse départ</div></div>
-      <div class="tapis-stat"><div class="big">3.2</div><div class="unit">km/h</div><div class="lbl">Vitesse min à 15%</div></div>
-    </div>
-
-    <div class="sl">Déroulement</div>
-
-    <div class="phase-card">
-      <div class="ph-icon">📈</div>
-      <div class="ph-info"><h3>Montée progressive</h3><p>8% → 15% · 5 km/h · +1% toutes les 5 min</p></div>
-      <div class="ph-time" style="color:var(--blue)">20'</div>
-    </div>
-    <div class="phase-card">
-      <div class="ph-icon">🎯</div>
-      <div class="ph-info"><h3>Zone cible maintenue</h3><p>15% fixe · Vitesse ajustée pour 146–156 bpm</p></div>
-      <div class="ph-time" style="color:var(--green)">15'</div>
-    </div>
-    <div class="phase-card">
-      <div class="ph-icon">📉</div>
-      <div class="ph-info"><h3>Retour au calme</h3><p>15% → 5% · 3,5 km/h · Ne jamais s'arrêter brutalement</p></div>
-      <div class="ph-time" style="color:var(--yellow)">5'</div>
-    </div>
-
-    <div class="sl">Ajustement vitesse</div>
-    <div class="adjust-table">
-      <div class="adj-row"><span>FC &gt; 156 bpm</span><span style="color:var(--red);font-weight:600;">↓ Baisser vitesse</span></div>
-      <div class="adj-row"><span>FC entre 146–156</span><span style="color:var(--green);font-weight:600;">✓ Maintenir</span></div>
-      <div class="adj-row"><span>FC &lt; 146 bpm</span><span style="color:var(--orange);font-weight:600;">↑ Augmenter vitesse</span></div>
-    </div>
+    <button class="save-btn" onclick="saveMesure()">💾 ENREGISTRER</button>
   </div>
 
-  <!-- ===== CONSEILS ===== -->
-  <div id="panel-conseils" class="panel">
-
-    <div class="sl">Checklist séance</div>
-    <div class="checklist">
-      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">🚴 5 min échauffement vélo / marche</span><span class="check-time">5 min</span></div>
-      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">💪 40 min machines (selon le jour)</span><span class="check-time">40 min</span></div>
-      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">🏃 40 min tapis incliné zone 146–156</span><span class="check-time">40 min</span></div>
-      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">🧘 5 min étirements debout</span><span class="check-time">5 min</span></div>
-      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">💧 Hydratation tout au long</span><span class="check-time">—</span></div>
-    </div>
-
-    <div class="sl">Règle de progression</div>
-    <div class="prog-rule">
-      <h3>⚡ LA RÈGLE DES 15 REPS</h3>
-      <div class="prog-row"><span style="width:24px;text-align:center">✅</span><span>Tu arrives à <strong>15 reps</strong> sur les 3 séries</span></div>
-      <div class="prog-row"><span style="width:24px;text-align:center">➡️</span><span>Semaine suivante : <strong>+5 kg</strong></span></div>
-      <div class="prog-row"><span style="width:24px;text-align:center">❌</span><span>Tu n'arrives pas à 15 → <strong>même poids</strong></span></div>
-    </div>
-
-    <div class="sl">Conseils clés</div>
-    <div class="conseil-card hl">
-      <div class="conseil-hd"><span class="conseil-ico">🧀</span><span class="conseil-title">Fromage — max 30g/jour</span></div>
-      <div class="conseil-body">Pèse-le pendant 2 semaines pour calibrer ton œil — tu seras surpris de la différence avec ta portion habituelle.</div>
-    </div>
-    <div class="conseil-card">
-      <div class="conseil-hd"><span class="conseil-ico">🥩</span><span class="conseil-title">Protéines — 1,6g/kg/jour</span></div>
-      <div class="conseil-body">Soit ~145g/jour. Œufs, poulet, poisson, yaourt grec. Le muscle construit brûle de la graisse 24h/24.</div>
-    </div>
-    <div class="conseil-card">
-      <div class="conseil-hd"><span class="conseil-ico">😴</span><span class="conseil-title">Sommeil — tu coches cette case ✅</span></div>
-      <div class="conseil-body">7–9h/nuit parfait. L'hormone de croissance brûle la graisse viscérale pendant le sommeil.</div>
-    </div>
-    <div class="conseil-card">
-      <div class="conseil-hd"><span class="conseil-ico">📅</span><span class="conseil-title">Vacances — 4ème séance jeudi</span></div>
-      <div class="conseil-body">Bas du corps (Mercredi) ou Haut A allégé selon ta fatigue.</div>
-    </div>
-
-    <div class="sl">Planning semaine type</div>
-    <div class="cal-week">
-      <div class="cal-day ao"><div class="dn">Lun</div><div class="di">🔵</div><div class="dl">Haut A</div></div>
-      <div class="cal-day"><div class="dn">Mar</div><div class="di">😴</div><div class="dl">Repos</div></div>
-      <div class="cal-day ag"><div class="dn">Mer</div><div class="di">🟢</div><div class="dl">Bas</div></div>
-      <div class="cal-day"><div class="dn">Jeu</div><div class="di">😴</div><div class="dl">Repos</div></div>
-      <div class="cal-day"><div class="dn">Ven</div><div class="di">😴</div><div class="dl">Repos</div></div>
-      <div class="cal-day ar"><div class="dn">Sam</div><div class="di">🔴</div><div class="dl">Haut B</div></div>
-      <div class="cal-day"><div class="dn">Dim</div><div class="di">😴</div><div class="dl">Repos</div></div>
-    </div>
-
+  <!-- Graphique -->
+  <div class="chart-wrap">
+    <h3>📉 COURBE MASSE GRASSE</h3>
+    <div id="chart-container"><div class="empty-chart">Ajoute ta première mesure pour voir la courbe apparaître 📊</div></div>
   </div>
-</div><!-- /panels -->
+
+  <!-- Jalons -->
+  <div class="sl" style="margin-top:0">Jalons objectifs</div>
+  <div class="jalons-card" id="jalons-card"></div>
+
+  <!-- Historique -->
+  <div class="historique-card">
+    <h3>📋 HISTORIQUE</h3>
+    <div id="historique-list"><div style="padding:14px;font-size:12px;color:var(--muted)">Aucune mesure enregistrée.</div></div>
+  </div>
+
+</div>
 
 <script>
 // ── SERVICE WORKER ──
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js')
-      .then(reg => console.log('SW registered'))
-      .catch(err => console.log('SW error:', err));
+    navigator.serviceWorker.register('./sw.js').catch(()=>{});
   });
 }
 
-// ── OFFLINE INDICATOR ──
+// ── OFFLINE ──
 function updateOnlineStatus() {
   const badge = document.getElementById('offline-badge');
   if (!navigator.onLine) {
-    badge.textContent = '✓ Hors-ligne';
-    badge.style.background = 'rgba(0,212,106,0.15)';
-    badge.style.color = 'var(--green)';
-    badge.classList.add('show');
+    badge.textContent = '✓ Hors-ligne'; badge.style.color='var(--green)'; badge.classList.add('show');
   } else {
-    badge.textContent = '● En ligne';
-    badge.style.background = 'rgba(0,180,255,0.1)';
-    badge.style.color = 'var(--blue)';
-    badge.classList.add('show');
-    setTimeout(() => badge.classList.remove('show'), 3000);
+    badge.textContent = '● En ligne'; badge.style.color='var(--blue)'; badge.classList.add('show');
+    setTimeout(()=>badge.classList.remove('show'),3000);
   }
 }
 window.addEventListener('online', updateOnlineStatus);
 window.addEventListener('offline', updateOnlineStatus);
 
-// ── PWA INSTALL PROMPT ──
+// ── PWA INSTALL ──
 let deferredPrompt;
 window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault();
-  deferredPrompt = e;
+  e.preventDefault(); deferredPrompt = e;
   document.getElementById('install-banner').classList.add('show');
 });
-
 function installApp() {
   if (deferredPrompt) {
     deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(choice => {
-      deferredPrompt = null;
-      document.getElementById('install-banner').classList.remove('show');
-    });
+    deferredPrompt.userChoice.then(()=>{ deferredPrompt=null; document.getElementById('install-banner').classList.remove('show'); });
   }
 }
-
-window.addEventListener('appinstalled', () => {
-  document.getElementById('install-banner').classList.remove('show');
-});
+window.addEventListener('appinstalled', ()=>document.getElementById('install-banner').classList.remove('show'));
 
 // ── TABS ──
 function switchTab(id, el) {
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active','blue','red','tapis','conseils'));
-  document.getElementById('panel-' + id).classList.add('active');
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active','blue','red','tapis','conseils'));
+  document.getElementById('panel-'+id).classList.add('active');
   el.classList.add('active');
-  if (id==='mercredi') el.classList.add('blue');
-  if (id==='samedi') el.classList.add('red');
-  if (id==='tapis') el.classList.add('tapis');
-  if (id==='conseils') el.classList.add('conseils');
+  if(id==='mercredi') el.classList.add('blue');
+  if(id==='samedi') el.classList.add('red');
+  if(id==='tapis') el.classList.add('tapis');
+  if(id==='conseils') el.classList.add('conseils');
+  if(id==='suivi') { el.classList.add('suivi'); renderSuivi(); }
 }
 
 // ── TIMERS ──
-const timers = {};
-
+const timers={};
 function startTimer(id) {
-  if (timers[id]) { clearInterval(timers[id]); delete timers[id]; }
-  const display = document.getElementById('td-' + id);
-  const bar = document.getElementById('rb-' + id);
-  const btn = document.getElementById('tb-' + id);
-  display.style.display = 'block';
-  btn.style.display = 'none';
-  let seconds = 60;
-  bar.style.width = '100%';
-
-  // Vibrate on start (Android)
-  if (navigator.vibrate) navigator.vibrate(50);
-
-  timers[id] = setInterval(() => {
+  if(timers[id]){clearInterval(timers[id]);delete timers[id];}
+  const display=document.getElementById('td-'+id);
+  const bar=document.getElementById('rb-'+id);
+  const btn=document.getElementById('tb-'+id);
+  display.style.display='block'; btn.style.display='none';
+  let seconds=60; bar.style.width='100%';
+  if(navigator.vibrate) navigator.vibrate(50);
+  timers[id]=setInterval(()=>{
     seconds--;
-    const m = Math.floor(seconds/60);
-    const s = seconds%60;
-    display.textContent = m + ':' + String(s).padStart(2,'0');
-    bar.style.width = (seconds/60*100) + '%';
-    if (seconds <= 0) {
+    display.textContent=Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0');
+    bar.style.width=(seconds/60*100)+'%';
+    if(seconds<=0){
       clearInterval(timers[id]); delete timers[id];
-      display.textContent = '✅ GO !';
-      if (navigator.vibrate) navigator.vibrate([100,50,100,50,200]);
-      setTimeout(() => {
-        display.style.display = 'none';
-        btn.style.display = 'block';
-        btn.textContent = '⏱ RELANCER 60s';
-        bar.style.width = '100%';
-      }, 2000);
+      display.textContent='✅ GO !';
+      if(navigator.vibrate) navigator.vibrate([100,50,100,50,200]);
+      setTimeout(()=>{ display.style.display='none'; btn.style.display='block'; btn.textContent='⏱ RELANCER 60s'; bar.style.width='100%'; },2000);
     }
-  }, 1000);
+  },1000);
 }
 
 // ── CHECKLIST ──
 function toggleCheck(item) {
   item.classList.toggle('done');
-  item.querySelector('.check-box').textContent = item.classList.contains('done') ? '✓' : '';
+  item.querySelector('.check-box').textContent=item.classList.contains('done')?'✓':'';
 }
+
+
+// ── RESET SEANCE ──
+function resetSeance(panelId) {
+  const panel = document.getElementById(panelId);
+  if (!panel) return;
+  const cards = panel.querySelectorAll('.exercise-card');
+  cards.forEach(c => c.classList.remove('done'));
+  if (navigator.vibrate) navigator.vibrate([30,20,30]);
+}
+
+// ── EXERCICE FAIT/PAS FAIT ──
+function toggleDone(card) {
+  // Ne pas déclencher si on clique sur les boutons de charge ou l'input
+  if (event && event.target && (
+    event.target.classList.contains('charge-btn') ||
+    event.target.classList.contains('charge-val') ||
+    event.target.tagName === 'INPUT'
+  )) return;
+  card.classList.toggle('done');
+  if (navigator.vibrate) navigator.vibrate(30);
+}
+
+// ── CHARGES — sauvegarde localStorage ──
+const KEYS = ['L1','L2','L3','L4','L5','M1','M2','M3','M4','M5','S1','S2','S3','S4','S5'];
+
+function loadCharges() {
+  KEYS.forEach(k => {
+    const saved = localStorage.getItem('charge-'+k);
+    if (saved !== null) {
+      const input = document.getElementById('charge-'+k);
+      if (input) input.value = saved;
+    }
+  });
+}
+
+function saveCharge(key, val) {
+  const v = Math.max(0, parseInt(val)||0);
+  localStorage.setItem('charge-'+key, v);
+  const badge = document.getElementById('saved-'+key);
+  if (badge) {
+    badge.classList.add('show');
+    setTimeout(()=>badge.classList.remove('show'), 2000);
+  }
+}
+
+function changeCharge(key, delta) {
+  const input = document.getElementById('charge-'+key);
+  if (!input) return;
+  const newVal = Math.max(0, (parseInt(input.value)||0) + delta);
+  input.value = newVal;
+  saveCharge(key, newVal);
+}
+
+// Charger les valeurs au démarrage
+window.addEventListener('DOMContentLoaded', () => {
+  loadCharges();
+  // init date input à ce mois
+  const now = new Date();
+  const m = now.toISOString().slice(0,7);
+  const di = document.getElementById('input-date');
+  if(di) di.value = m;
+});
+
+// ── TRACKER SUIVI ──
+const DEPART_MG = 28;      // % masse grasse départ
+const DEPART_POIDS = 91;   // kg départ
+const DEPART_KG_MG = 25.5; // kg de graisse départ
+const OBJECTIF_MG = 17;    // % objectif
+const OBJECTIF_DATE = new Date('2027-06-01');
+const JALONS = [
+  { date:'2026-06', label:'Juin 2026',     objectif_mg:26, objectif_kg_perdu:2.5 },
+  { date:'2026-10', label:'Octobre 2026',  objectif_mg:23, objectif_kg_perdu:5   },
+  { date:'2027-02', label:'Février 2027',  objectif_mg:20, objectif_kg_perdu:7   },
+  { date:'2027-06', label:'Juin 2027 🎯',  objectif_mg:17, objectif_kg_perdu:10  },
+];
+
+function getMesures() {
+  try { return JSON.parse(localStorage.getItem('suivi-mesures') || '[]'); }
+  catch(e) { return []; }
+}
+
+function saveMesure() {
+  const poids = parseFloat(document.getElementById('input-poids').value);
+  const mg    = parseFloat(document.getElementById('input-mg').value);
+  const mm    = parseFloat(document.getElementById('input-mm').value);
+  const date  = document.getElementById('input-date').value;
+  const note  = document.getElementById('input-note').value.trim();
+
+  if(!poids || !mg || !date) { alert('Remplis au moins : poids, masse grasse et date.'); return; }
+
+  const mesures = getMesures();
+  // remplacer si même mois
+  const idx = mesures.findIndex(m => m.date === date);
+  const entry = { date, poids, mg, mm: mm||0, note };
+  if(idx >= 0) mesures[idx] = entry;
+  else mesures.push(entry);
+  mesures.sort((a,b) => a.date.localeCompare(b.date));
+  localStorage.setItem('suivi-mesures', JSON.stringify(mesures));
+
+  // reset note
+  document.getElementById('input-note').value = '';
+  renderSuivi();
+  alert('✅ Mesure enregistrée !');
+}
+
+function deleteMesure(date) {
+  if(!confirm('Supprimer la mesure de ' + formatMonth(date) + ' ?')) return;
+  let mesures = getMesures().filter(m => m.date !== date);
+  localStorage.setItem('suivi-mesures', JSON.stringify(mesures));
+  renderSuivi();
+}
+
+function formatMonth(ym) {
+  const [y,m] = ym.split('-');
+  const months = ['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'];
+  return months[parseInt(m)-1] + ' ' + y;
+}
+
+function moisRestants() {
+  const now = new Date();
+  const diff = (OBJECTIF_DATE.getFullYear() - now.getFullYear())*12 + (OBJECTIF_DATE.getMonth() - now.getMonth());
+  return Math.max(0, diff);
+}
+
+function renderSuivi() {
+  const mesures = getMesures();
+  const last = mesures.length > 0 ? mesures[mesures.length-1] : null;
+  const currentMG = last ? last.mg : DEPART_MG;
+  const currentPoids = last ? last.poids : DEPART_POIDS;
+  const currentKgMG = last ? (last.poids * last.mg / 100) : DEPART_KG_MG;
+  const kgPerdu = DEPART_KG_MG - currentKgMG;
+  const kgRestant = Math.max(0, currentKgMG - (currentPoids * OBJECTIF_MG / 100));
+  const avancement = Math.min(100, Math.max(0, (kgPerdu / 10) * 100));
+
+  // Hero
+  document.getElementById('hero-pct').textContent = currentMG.toFixed(1) + '%';
+  document.getElementById('hero-bar').style.width = avancement + '%';
+  document.getElementById('hero-avancement').textContent = Math.round(avancement) + '% accompli';
+
+  // Stats
+  document.getElementById('stat-perdu').textContent = kgPerdu > 0 ? '+' + kgPerdu.toFixed(1) : '0';
+  document.getElementById('stat-restant').textContent = kgRestant.toFixed(1);
+  document.getElementById('stat-mois').textContent = moisRestants();
+
+  // Jalons
+  const jc = document.getElementById('jalons-card');
+  jc.innerHTML = JALONS.map(j => {
+    const atteint = last && last.date >= j.date && last.mg <= j.objectif_mg;
+    const enCours = !atteint && last && last.date >= j.date.slice(0,7);
+    const icon = atteint ? '✅' : (enCours ? '🔄' : '⏳');
+    const col = atteint ? 'var(--green)' : (enCours ? 'var(--orange)' : 'var(--muted)');
+    const statusTxt = atteint ? 'Atteint !' : (enCours ? 'En cours' : 'À venir');
+    return `<div class="jalon-row">
+      <div class="jalon-icon">${icon}</div>
+      <div class="jalon-info">
+        <div class="jalon-date">${j.label}</div>
+        <div class="jalon-target">Objectif : ${j.objectif_mg}% · −${j.objectif_kg_perdu} kg de graisse</div>
+      </div>
+      <div class="jalon-status" style="color:${col}">${statusTxt}</div>
+    </div>`;
+  }).join('');
+
+  // Graphique SVG
+  renderChart(mesures);
+
+  // Historique
+  const hl = document.getElementById('historique-list');
+  if(mesures.length === 0) {
+    hl.innerHTML = '<div style="padding:14px;font-size:12px;color:var(--muted)">Aucune mesure enregistrée.</div>';
+  } else {
+    hl.innerHTML = [...mesures].reverse().map((m, i, arr) => {
+      const prev = arr[i+1];
+      const delta = prev ? (m.mg - prev.mg).toFixed(1) : null;
+      const deltaCol = delta !== null ? (parseFloat(delta) < 0 ? 'var(--green)' : parseFloat(delta) > 0 ? 'var(--red)' : 'var(--muted)') : 'var(--muted)';
+      const deltaStr = delta !== null ? (parseFloat(delta) > 0 ? '+'+delta+'%' : delta+'%') : '—';
+      const kgMG = (m.poids * m.mg / 100).toFixed(1);
+      return `<div>
+        <div class="hist-row">
+          <span class="hist-date">${formatMonth(m.date)}</span>
+          <span class="hist-poids" style="color:var(--text)">${m.poids}kg</span>
+          <span class="hist-mg" style="color:#C084FC">${m.mg}% MG<br><span style="font-size:10px;color:var(--muted)">${kgMG}kg graisse</span></span>
+          <span class="hist-delta" style="color:${deltaCol}">${deltaStr}</span>
+          <button class="hist-del" onclick="deleteMesure('${m.date}')">🗑</button>
+        </div>
+        ${m.note ? `<div style="padding:0 14px 8px;font-size:10px;color:var(--muted)">💬 ${m.note}</div>` : ''}
+      </div>`;
+    }).join('');
+  }
+}
+
+function renderChart(mesures) {
+  const container = document.getElementById('chart-container');
+  if(mesures.length < 2) {
+    container.innerHTML = '<div class="empty-chart">Ajoute au moins 2 mesures pour voir la courbe 📊</div>';
+    return;
+  }
+
+  const W = 320, H = 140, PAD = { t:10, r:16, b:28, l:36 };
+  const IW = W - PAD.l - PAD.r;
+  const IH = H - PAD.t - PAD.b;
+
+  // données : masse grasse + ligne objectif
+  const allMG = mesures.map(m => m.mg);
+  const minMG = Math.min(...allMG, OBJECTIF_MG) - 2;
+  const maxMG = Math.max(...allMG, DEPART_MG) + 2;
+
+  function xPos(i) { return PAD.l + (i / (mesures.length - 1)) * IW; }
+  function yPos(v) { return PAD.t + IH - ((v - minMG) / (maxMG - minMG)) * IH; }
+
+  // polyline mesures
+  const pts = mesures.map((m,i) => `${xPos(i)},${yPos(m.mg)}`).join(' ');
+  // aire sous la courbe
+  const areaStart = `${xPos(0)},${PAD.t + IH}`;
+  const areaEnd   = `${xPos(mesures.length-1)},${PAD.t + IH}`;
+  const areaPts   = `${areaStart} ${pts} ${areaEnd}`;
+
+  // ligne objectif Y
+  const objY = yPos(OBJECTIF_MG);
+
+  // labels X
+  const labelsX = mesures.map((m,i) => {
+    const lbl = formatMonth(m.date).replace(' ','<br>');
+    return `<text x="${xPos(i)}" y="${H-6}" text-anchor="middle" fill="#555" font-size="8">${formatMonth(m.date).split(' ')[0]}</text>`;
+  }).join('');
+
+  // labels Y
+  const labelsY = [minMG+2, OBJECTIF_MG, maxMG-2].map(v =>
+    `<text x="${PAD.l-4}" y="${yPos(v)+3}" text-anchor="end" fill="#555" font-size="8">${v.toFixed(0)}%</text>`
+  ).join('');
+
+  // points
+  const dots = mesures.map((m,i) =>
+    `<circle cx="${xPos(i)}" cy="${yPos(m.mg)}" r="4" fill="#C084FC" stroke="#0A0A0A" stroke-width="1.5"/>`
+  ).join('');
+
+  container.innerHTML = `
+    <svg viewBox="0 0 ${W} ${H}" style="width:100%;display:block">
+      <defs>
+        <linearGradient id="mgGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#C084FC" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#C084FC" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <!-- grille -->
+      <line x1="${PAD.l}" y1="${PAD.t}" x2="${PAD.l}" y2="${PAD.t+IH}" stroke="#2A2A2A" stroke-width="1"/>
+      <line x1="${PAD.l}" y1="${PAD.t+IH}" x2="${PAD.l+IW}" y2="${PAD.t+IH}" stroke="#2A2A2A" stroke-width="1"/>
+      <!-- ligne objectif -->
+      <line x1="${PAD.l}" y1="${objY}" x2="${PAD.l+IW}" y2="${objY}" stroke="#FF4D00" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="${PAD.l+IW+2}" y="${objY+3}" fill="#FF4D00" font-size="8">17%</text>
+      <!-- aire -->
+      <polygon points="${areaPts}" fill="url(#mgGrad)"/>
+      <!-- courbe -->
+      <polyline points="${pts}" fill="none" stroke="#C084FC" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+      <!-- points -->
+      ${dots}
+      <!-- labels -->
+      ${labelsY}
+      ${labelsX}
+    </svg>`;
+}
+
+// init suivi panel display fix
+document.getElementById('panel-suivi').style.display = '';
 </script>
 </body>
 </html>
