@@ -29,7 +29,10 @@ body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;d
 /* HEADER */
 .header{background:var(--dark2);border-bottom:2px solid var(--orange);padding:env(safe-area-inset-top,14px) 16px 12px;flex-shrink:0;}
 .header-top{display:flex;align-items:center;justify-content:space-between;}
-.logo{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--orange);letter-spacing:2px;line-height:1;}
+.header-left{display:flex;align-items:center;gap:10px;}
+.header-icon{width:40px;height:40px;border-radius:10px;flex-shrink:0;}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--orange);letter-spacing:2px;line-height:1;}
+.logo-sub{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
 .offline-badge{font-size:10px;padding:3px 8px;border-radius:20px;color:var(--green);border:1px solid rgba(0,212,106,0.3);background:rgba(0,212,106,0.15);display:none;}
 .offline-badge.show{display:inline-block;}
 .header-pills{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;}
@@ -48,6 +51,11 @@ body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;d
 .tab.active.t-b{color:var(--blue);border-bottom-color:var(--blue);}
 .tab.active.t-y{color:var(--yellow);border-bottom-color:var(--yellow);}
 .tab.active.t-p{color:var(--purple);border-bottom-color:var(--purple);}
+.tab.active.t-opt{color:#FCD34D;border-bottom-color:#FCD34D;}
+
+/* OPTIONAL SESSION */
+.opt-banner{background:linear-gradient(135deg,rgba(252,211,77,0.1),rgba(255,77,0,0.08));border:1px solid rgba(252,211,77,0.35);border-radius:13px;padding:14px;margin-bottom:14px;font-size:12px;color:#aaa;line-height:1.6;}
+.opt-banner strong{color:#FCD34D;}
 
 /* PANELS */
 .panels{flex:1;overflow:hidden;position:relative;}
@@ -235,14 +243,14 @@ body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;d
 
 <div class="header">
   <div class="header-top">
-    <div class="logo">BASIC FIT — MON PROGRAMME</div>
+    <div class="header-left">
+      <img src="icon-192.png" alt="BF" class="header-icon">
+      <div>
+        <div class="logo">BASIC FIT</div>
+        <div class="logo-sub">Mon Programme</div>
+      </div>
+    </div>
     <div id="offline-badge" class="offline-badge">✓ Hors-ligne</div>
-  </div>
-  <div class="header-pills">
-    <span class="pill pill-o">58 ans</span>
-    <span class="pill pill-b">85–95 kg</span>
-    <span class="pill pill-g">3×/semaine</span>
-    <span class="pill pill-o">Graisse viscérale</span>
   </div>
 </div>
 
@@ -250,9 +258,8 @@ body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;d
   <div class="tab active" onclick="switchTab('lundi',this)">🔵 Lundi</div>
   <div class="tab" onclick="switchTab('mercredi',this)">🟢 Mercredi</div>
   <div class="tab" onclick="switchTab('samedi',this)">🔴 Samedi</div>
-  <div class="tab" onclick="switchTab('tapis',this)">🏃 Tapis</div>
-  <div class="tab" onclick="switchTab('conseils',this)">💡 Conseils</div>
   <div class="tab" onclick="switchTab('suivi',this)">📈 Suivi</div>
+  <div class="tab" onclick="switchTab('option',this)">⚡ Option</div>
 </div>
 
 <div class="panels">
@@ -277,7 +284,7 @@ body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;d
     <div class="ex-sets"><div class="sets-big" style="color:var(--orange)">5'</div><div class="sets-label">MIN</div></div>
   </div>
   <div class="sl">Pectoraux</div>
-  <div class="exercise-card acc-o" onclick="toggleDone(this,event)">
+  <div class="exercise-card acc-o" data-id="L1" onclick="toggleDone(this,event)">
     <span class="done-badge">✓ Fait</span>
     <div class="ex-top">
       <div class="ex-thumb"><img src="https://bodybuilding-wizard.com/wp-content/uploads/2014/04/pec-deck-flyes-1.jpg" alt="" onerror="this.parentNode.textContent='🦋'"></div>
@@ -296,7 +303,7 @@ body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;d
       <span class="charge-saved" id="saved-L1">✓</span>
     </div>
   </div>
-  <div class="exercise-card acc-o" onclick="toggleDone(this,event)">
+  <div class="exercise-card acc-o" data-id="L2" onclick="toggleDone(this,event)">
     <span class="done-badge">✓ Fait</span>
     <div class="ex-top">
       <div class="ex-thumb"><img src="https://weighttraining.guide/wp-content/uploads/2016/10/machine-chest-press.png" alt="" onerror="this.parentNode.textContent='🏋️'"></div>
@@ -316,7 +323,7 @@ body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;d
     </div>
   </div>
   <div class="sl">Dos</div>
-  <div class="exercise-card acc-o" onclick="toggleDone(this,event)">
+  <div class="exercise-card acc-o" data-id="L3" onclick="toggleDone(this,event)">
     <span class="done-badge">✓ Fait</span>
     <div class="ex-top">
       <div class="ex-thumb"><img src="https://bodybuilding-wizard.com/wp-content/uploads/2015/03/machine-lat-pulldown-1.jpg" alt="" onerror="this.parentNode.textContent='⬇️'"></div>
@@ -335,7 +342,7 @@ body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;d
       <span class="charge-saved" id="saved-L3">✓</span>
     </div>
   </div>
-  <div class="exercise-card acc-o" onclick="toggleDone(this,event)">
+  <div class="exercise-card acc-o" data-id="L4" onclick="toggleDone(this,event)">
     <span class="done-badge">✓ Fait</span>
     <div class="ex-top">
       <div class="ex-thumb"><img src="https://www.inspireusafoundation.org/wp-content/uploads/2022/04/seated-cable-row.gif" alt="" onerror="this.parentNode.textContent='🚣'"></div>
@@ -354,7 +361,7 @@ body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;d
       <span class="charge-saved" id="saved-L4">✓</span>
     </div>
   </div>
-  <div class="exercise-card acc-o" onclick="toggleDone(this,event)">
+  <div class="exercise-card acc-o" data-id="L5" onclick="toggleDone(this,event)">
     <span class="done-badge">✓ Fait</span>
     <div class="ex-top">
       <div class="ex-thumb"><img src="https://www.inspireusafoundation.org/wp-content/uploads/2022/09/cable-face-pull.gif" alt="" onerror="this.parentNode.textContent='🎯'"></div>
@@ -399,7 +406,7 @@ body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;d
     <div class="ex-sets"><div class="sets-big" style="color:var(--green)">5'</div><div class="sets-label">MIN</div></div>
   </div>
   <div class="sl">Cuisses & Fessiers</div>
-  <div class="exercise-card acc-g key" onclick="toggleDone(this,event)">
+  <div class="exercise-card acc-g key" data-id="M1" onclick="toggleDone(this,event)">
     <span class="key-badge">★ PRIORITÉ</span>
     <span class="done-badge">✓ Fait</span>
     <div class="ex-top">
@@ -419,7 +426,7 @@ body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;d
       <span class="charge-saved" id="saved-M1">✓</span>
     </div>
   </div>
-  <div class="exercise-card acc-g" onclick="toggleDone(this,event)">
+  <div class="exercise-card acc-g" data-id="M2" onclick="toggleDone(this,event)">
     <span class="done-badge">✓ Fait</span>
     <div class="ex-top">
       <div class="ex-thumb"><img src="https://www.inspireusafoundation.org/wp-content/uploads/2022/01/leg-extension.gif" alt="" onerror="this.parentNode.textContent='🦵'"></div>
@@ -438,7 +445,7 @@ body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;d
       <span class="charge-saved" id="saved-M2">✓</span>
     </div>
   </div>
-  <div class="exercise-card acc-g" onclick="toggleDone(this,event)">
+  <div class="exercise-card acc-g" data-id="M3" onclick="toggleDone(this,event)">
     <span class="done-badge">✓ Fait</span>
     <div class="ex-top">
       <div class="ex-thumb"><img src="https://www.inspireusafoundation.org/wp-content/uploads/2022/01/lying-leg-curl.gif" alt="" onerror="this.parentNode.textContent='🦵'"></div>
@@ -457,7 +464,7 @@ body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;d
       <span class="charge-saved" id="saved-M3">✓</span>
     </div>
   </div>
-  <div class="exercise-card acc-g" onclick="toggleDone(this,event)">
+  <div class="exercise-card acc-g" data-id="M4" onclick="toggleDone(this,event)">
     <span class="done-badge">✓ Fait</span>
     <div class="ex-top">
       <div class="ex-thumb"><img src="https://www.inspireusafoundation.org/wp-content/uploads/2022/03/hip-abduction-machine.gif" alt="" onerror="this.parentNode.textContent='🍑'"></div>
@@ -476,7 +483,7 @@ body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;d
       <span class="charge-saved" id="saved-M4">✓</span>
     </div>
   </div>
-  <div class="exercise-card acc-g" onclick="toggleDone(this,event)">
+  <div class="exercise-card acc-g" data-id="M5" onclick="toggleDone(this,event)">
     <span class="done-badge">✓ Fait</span>
     <div class="ex-top">
       <div class="ex-thumb">🦶</div>
@@ -520,7 +527,7 @@ body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;d
     <div class="ex-sets"><div class="sets-big" style="color:var(--red)">5'</div><div class="sets-label">MIN</div></div>
   </div>
   <div class="sl">Épaules</div>
-  <div class="exercise-card acc-r" onclick="toggleDone(this,event)">
+  <div class="exercise-card acc-r" data-id="S1" onclick="toggleDone(this,event)">
     <span class="done-badge">✓ Fait</span>
     <div class="ex-top">
       <div class="ex-thumb"><img src="https://www.inspireusafoundation.org/wp-content/uploads/2022/04/machine-shoulder-press.gif" alt="" onerror="this.parentNode.textContent='💪'"></div>
@@ -539,7 +546,7 @@ body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;d
       <span class="charge-saved" id="saved-S1">✓</span>
     </div>
   </div>
-  <div class="exercise-card acc-r" onclick="toggleDone(this,event)">
+  <div class="exercise-card acc-r" data-id="S2" onclick="toggleDone(this,event)">
     <span class="done-badge">✓ Fait</span>
     <div class="ex-top">
       <div class="ex-thumb"><img src="https://homegymreview.co.uk/wp-content/uploads/2021/02/Cable-Lateral-Raise-1.jpg" alt="" onerror="this.parentNode.textContent='↔️'"></div>
@@ -559,7 +566,7 @@ body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;d
     </div>
   </div>
   <div class="sl">Bras</div>
-  <div class="exercise-card acc-r" onclick="toggleDone(this,event)">
+  <div class="exercise-card acc-r" data-id="S3" onclick="toggleDone(this,event)">
     <span class="done-badge">✓ Fait</span>
     <div class="ex-top">
       <div class="ex-thumb"><img src="https://www.inspireusafoundation.org/wp-content/uploads/2022/01/machine-bicep-curl.gif" alt="" onerror="this.parentNode.textContent='💪'"></div>
@@ -578,7 +585,7 @@ body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;d
       <span class="charge-saved" id="saved-S3">✓</span>
     </div>
   </div>
-  <div class="exercise-card acc-r" onclick="toggleDone(this,event)">
+  <div class="exercise-card acc-r" data-id="S4" onclick="toggleDone(this,event)">
     <span class="done-badge">✓ Fait</span>
     <div class="ex-top">
       <div class="ex-thumb"><img src="https://fitnessvolt.com/wp-content/uploads/2019/11/tricep-rope-pushdown.gif" alt="" onerror="this.parentNode.textContent='💥'"></div>
@@ -597,7 +604,7 @@ body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;d
       <span class="charge-saved" id="saved-S4">✓</span>
     </div>
   </div>
-  <div class="exercise-card acc-r" onclick="toggleDone(this,event)">
+  <div class="exercise-card acc-r" data-id="S5" onclick="toggleDone(this,event)">
     <span class="done-badge">✓ Fait</span>
     <div class="ex-top">
       <div class="ex-thumb"><img src="https://homegymreview.co.uk/wp-content/uploads/2021/04/Cable-Upright-Row-female.jpg" alt="" onerror="this.parentNode.textContent='⬆️'"></div>
@@ -622,65 +629,6 @@ body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;d
     <div id="td-samedi" class="timer-display" style="color:var(--red)">1:00</div>
     <button class="timer-btn" id="tb-samedi" style="background:var(--red)" onclick="startTimer('samedi')">⏱ LANCER 60 SECONDES</button>
     <div class="rest-bar"><div id="rb-samedi" class="rest-fill" style="width:100%;background:var(--red)"></div></div>
-  </div>
-</div>
-
-<!-- ===== TAPIS ===== -->
-<div id="panel-tapis" class="panel">
-  <div class="session-header">
-    <div class="session-badge" style="background:rgba(0,180,255,0.12)">🏃</div>
-    <div class="session-info"><h2 style="color:var(--blue)">TAPIS INCLINÉ</h2><p>Protocole cardio — après la musculation</p></div>
-  </div>
-  <div class="hr-zone"><div class="bpm">146–156</div><div class="bpm-label">BPM — Zone de combustion des graisses</div></div>
-  <div class="tapis-grid">
-    <div class="tapis-stat"><div class="big">40</div><div class="unit">min</div><div class="lbl">Durée cible</div></div>
-    <div class="tapis-stat"><div class="big">15%</div><div class="unit">max</div><div class="lbl">Pente maximale</div></div>
-    <div class="tapis-stat"><div class="big">5</div><div class="unit">km/h</div><div class="lbl">Vitesse départ</div></div>
-    <div class="tapis-stat"><div class="big">3.2</div><div class="unit">km/h</div><div class="lbl">Vitesse min à 15%</div></div>
-  </div>
-  <div class="sl">Déroulement</div>
-  <div class="phase-card"><div class="ph-icon">📈</div><div class="ph-info"><h3>Montée progressive</h3><p>8% → 15% · 5 km/h · +1% toutes les 5 min</p></div><div class="ph-time" style="color:var(--blue)">20'</div></div>
-  <div class="phase-card"><div class="ph-icon">🎯</div><div class="ph-info"><h3>Zone cible maintenue</h3><p>15% fixe · Vitesse ajustée pour 146–156 bpm</p></div><div class="ph-time" style="color:var(--green)">15'</div></div>
-  <div class="phase-card"><div class="ph-icon">📉</div><div class="ph-info"><h3>Retour au calme</h3><p>15% → 5% · 3,5 km/h · Ne jamais s'arrêter brutalement</p></div><div class="ph-time" style="color:var(--yellow)">5'</div></div>
-  <div class="sl">Ajustement vitesse</div>
-  <div class="adjust-table">
-    <div class="adj-row"><span>FC &gt; 156 bpm</span><span style="color:var(--red);font-weight:600;">↓ Baisser vitesse</span></div>
-    <div class="adj-row"><span>FC entre 146–156</span><span style="color:var(--green);font-weight:600;">✓ Maintenir</span></div>
-    <div class="adj-row"><span>FC &lt; 146 bpm</span><span style="color:var(--orange);font-weight:600;">↑ Augmenter vitesse</span></div>
-  </div>
-</div>
-
-<!-- ===== CONSEILS ===== -->
-<div id="panel-conseils" class="panel">
-  <div class="sl">Checklist séance</div>
-  <div class="checklist">
-    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">🚴 5 min échauffement vélo / marche</span><span class="check-time">5 min</span></div>
-    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">💪 40 min machines (selon le jour)</span><span class="check-time">40 min</span></div>
-    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">🏃 40 min tapis incliné zone 146–156</span><span class="check-time">40 min</span></div>
-    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">🧘 5 min étirements debout</span><span class="check-time">5 min</span></div>
-    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">💧 Hydratation tout au long</span><span class="check-time">—</span></div>
-  </div>
-  <div class="sl">Règle de progression</div>
-  <div class="prog-rule">
-    <h3>⚡ LA RÈGLE DES 15 REPS</h3>
-    <div class="prog-row"><span style="width:24px;text-align:center">✅</span><span>Tu arrives à <strong>15 reps</strong> sur les 3 séries</span></div>
-    <div class="prog-row"><span style="width:24px;text-align:center">➡️</span><span>Semaine suivante : <strong>+5 kg</strong></span></div>
-    <div class="prog-row"><span style="width:24px;text-align:center">❌</span><span>Tu n'arrives pas à 15 → <strong>même poids</strong></span></div>
-  </div>
-  <div class="sl">Conseils clés</div>
-  <div class="conseil-card hl"><div class="conseil-hd"><span class="conseil-ico">🧀</span><span class="conseil-title">Fromage — max 30g/jour</span></div><div class="conseil-body">Pèse-le pendant 2 semaines pour calibrer ton œil.</div></div>
-  <div class="conseil-card"><div class="conseil-hd"><span class="conseil-ico">🥩</span><span class="conseil-title">Protéines — 1,6g/kg/jour</span></div><div class="conseil-body">Soit ~145g/jour. Thon, poulet, poisson, yaourt grec 0%.</div></div>
-  <div class="conseil-card"><div class="conseil-hd"><span class="conseil-ico">😴</span><span class="conseil-title">Sommeil — tu coches cette case ✅</span></div><div class="conseil-body">7–9h/nuit parfait. L'hormone de croissance brûle la graisse viscérale pendant le sommeil.</div></div>
-  <div class="conseil-card"><div class="conseil-hd"><span class="conseil-ico">📅</span><span class="conseil-title">Vacances — 4ème séance jeudi</span></div><div class="conseil-body">Bas du corps (Mercredi) ou Haut A allégé selon ta fatigue.</div></div>
-  <div class="sl">Planning semaine type</div>
-  <div class="cal-week">
-    <div class="cal-day ao"><div class="dn">Lun</div><div class="di">🔵</div><div class="dl">Haut A</div></div>
-    <div class="cal-day"><div class="dn">Mar</div><div class="di">😴</div><div class="dl">Repos</div></div>
-    <div class="cal-day ag"><div class="dn">Mer</div><div class="di">🟢</div><div class="dl">Bas</div></div>
-    <div class="cal-day"><div class="dn">Jeu</div><div class="di">😴</div><div class="dl">Repos</div></div>
-    <div class="cal-day"><div class="dn">Ven</div><div class="di">😴</div><div class="dl">Repos</div></div>
-    <div class="cal-day ar"><div class="dn">Sam</div><div class="di">🔴</div><div class="dl">Haut B</div></div>
-    <div class="cal-day"><div class="dn">Dim</div><div class="di">😴</div><div class="dl">Repos</div></div>
   </div>
 </div>
 
@@ -718,6 +666,165 @@ body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;d
 
 </div><!-- /panels -->
 
+<!-- ===== SÉANCE OPTIONNELLE ===== -->
+<div id="panel-option" class="panel">
+  <div class="session-header">
+    <div class="session-badge" style="background:rgba(252,211,77,0.12)">⚡</div>
+    <div class="session-info">
+      <h2 style="color:#FCD34D">MARDI ou JEUDI — OPTIONNEL</h2>
+      <p>Développé couché · 4ème séance si possible</p>
+    </div>
+  </div>
+
+  <div class="opt-banner">
+    ⚡ <strong>Séance bonus — pas obligatoire.</strong> À faire uniquement si tu te sens bien récupéré. Elle se concentre sur le développé couché sous 3 angles pour maximiser le travail des pectoraux. Si tu es fatigué, passe ton tour — la récupération est aussi importante que l'entraînement.
+  </div>
+
+  <div class="sl">Échauffement</div>
+  <div class="warm-card">
+    <div class="ex-thumb">🚴</div>
+    <div class="ex-info"><div class="ex-name">Vélo ou tapis incliné doux</div><div class="ex-target">10 min — monter doucement à 110–120 bpm</div></div>
+    <div class="ex-sets"><div class="sets-big" style="color:#FCD34D">10'</div><div class="sets-label">MIN</div></div>
+  </div>
+
+  <div class="sl">Développé couché — 3 angles</div>
+
+  <div class="exercise-card" style="border-color:#2A2A2A;cursor:pointer;" data-id="O1" onclick="toggleDone(this,event)">
+    <span class="done-badge">✓ Fait</span>
+    <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:#FCD34D;border-radius:3px 0 0 3px;"></div>
+    <div class="ex-top">
+      <div class="ex-thumb"><img src="https://www.inspireusafoundation.org/wp-content/uploads/2022/01/barbell-bench-press.gif" alt="Développé plat" onerror="this.parentNode.textContent='🏋️'"></div>
+      <div class="ex-num" style="background:rgba(252,211,77,0.12);color:#FCD34D;width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:13px;flex-shrink:0;">1</div>
+      <div class="ex-info">
+        <div class="ex-name">Développé couché PLAT</div>
+        <div class="ex-target">Machine ou barre — pectoraux milieu</div>
+      </div>
+      <div class="ex-sets"><div class="sets-big" style="color:#FCD34D">4×12</div><div class="sets-label">REPS</div></div>
+    </div>
+    <div class="charge-row">
+      <span class="charge-label">💪 Charge :</span>
+      <div class="charge-input-wrap">
+        <div class="charge-btn" onclick="changeCharge('O1',-5)">−</div>
+        <input class="charge-val" id="charge-O1" type="number" value="0" min="0" max="300" step="5" oninput="saveCharge('O1',this.value)">
+        <div class="charge-btn" onclick="changeCharge('O1',5)">+</div>
+      </div>
+      <span class="charge-unit">kg</span>
+      <span class="charge-saved" id="saved-O1">✓</span>
+    </div>
+  </div>
+
+  <div class="exercise-card" style="border-color:#2A2A2A;cursor:pointer;" data-id="O2" onclick="toggleDone(this,event)">
+    <span class="done-badge">✓ Fait</span>
+    <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:#FCD34D;border-radius:3px 0 0 3px;"></div>
+    <div class="ex-top">
+      <div class="ex-thumb"><img src="https://www.inspireusafoundation.org/wp-content/uploads/2022/01/incline-bench-press.gif" alt="Développé incliné" onerror="this.parentNode.textContent='📐'"></div>
+      <div class="ex-num" style="background:rgba(252,211,77,0.12);color:#FCD34D;width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:13px;flex-shrink:0;">2</div>
+      <div class="ex-info">
+        <div class="ex-name">Développé couché INCLINÉ</div>
+        <div class="ex-target">Banc à 30–45° — pectoraux hauts</div>
+      </div>
+      <div class="ex-sets"><div class="sets-big" style="color:#FCD34D">3×12</div><div class="sets-label">REPS</div></div>
+    </div>
+    <div class="charge-row">
+      <span class="charge-label">💪 Charge :</span>
+      <div class="charge-input-wrap">
+        <div class="charge-btn" onclick="changeCharge('O2',-5)">−</div>
+        <input class="charge-val" id="charge-O2" type="number" value="0" min="0" max="300" step="5" oninput="saveCharge('O2',this.value)">
+        <div class="charge-btn" onclick="changeCharge('O2',5)">+</div>
+      </div>
+      <span class="charge-unit">kg</span>
+      <span class="charge-saved" id="saved-O2">✓</span>
+    </div>
+  </div>
+
+  <div class="exercise-card" style="border-color:#2A2A2A;cursor:pointer;" data-id="O3" onclick="toggleDone(this,event)">
+    <span class="done-badge">✓ Fait</span>
+    <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:#FCD34D;border-radius:3px 0 0 3px;"></div>
+    <div class="ex-top">
+      <div class="ex-thumb"><img src="https://www.inspireusafoundation.org/wp-content/uploads/2022/04/decline-bench-press.gif" alt="Développé décliné" onerror="this.parentNode.textContent='📉'"></div>
+      <div class="ex-num" style="background:rgba(252,211,77,0.12);color:#FCD34D;width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:13px;flex-shrink:0;">3</div>
+      <div class="ex-info">
+        <div class="ex-name">Développé couché DÉCLINÉ</div>
+        <div class="ex-target">Banc décliné ou machine — pectoraux bas</div>
+      </div>
+      <div class="ex-sets"><div class="sets-big" style="color:#FCD34D">3×12</div><div class="sets-label">REPS</div></div>
+    </div>
+    <div class="charge-row">
+      <span class="charge-label">💪 Charge :</span>
+      <div class="charge-input-wrap">
+        <div class="charge-btn" onclick="changeCharge('O3',-5)">−</div>
+        <input class="charge-val" id="charge-O3" type="number" value="0" min="0" max="300" step="5" oninput="saveCharge('O3',this.value)">
+        <div class="charge-btn" onclick="changeCharge('O3',5)">+</div>
+      </div>
+      <span class="charge-unit">kg</span>
+      <span class="charge-saved" id="saved-O3">✓</span>
+    </div>
+  </div>
+
+  <div class="exercise-card" style="border-color:#2A2A2A;cursor:pointer;" data-id="O4" onclick="toggleDone(this,event)">
+    <span class="done-badge">✓ Fait</span>
+    <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:#FCD34D;border-radius:3px 0 0 3px;"></div>
+    <div class="ex-top">
+      <div class="ex-thumb"><img src="https://bodybuilding-wizard.com/wp-content/uploads/2014/04/pec-deck-flyes-1.jpg" alt="Pec Deck" onerror="this.parentNode.textContent='🦋'"></div>
+      <div class="ex-num" style="background:rgba(252,211,77,0.12);color:#FCD34D;width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:13px;flex-shrink:0;">4</div>
+      <div class="ex-info">
+        <div class="ex-name">Pec Deck — finition</div>
+        <div class="ex-target">Isolation pectoraux — brûlure finale</div>
+      </div>
+      <div class="ex-sets"><div class="sets-big" style="color:#FCD34D">3×15</div><div class="sets-label">REPS</div></div>
+    </div>
+    <div class="charge-row">
+      <span class="charge-label">💪 Charge :</span>
+      <div class="charge-input-wrap">
+        <div class="charge-btn" onclick="changeCharge('O4',-5)">−</div>
+        <input class="charge-val" id="charge-O4" type="number" value="0" min="0" max="300" step="5" oninput="saveCharge('O4',this.value)">
+        <div class="charge-btn" onclick="changeCharge('O4',5)">+</div>
+      </div>
+      <span class="charge-unit">kg</span>
+      <span class="charge-saved" id="saved-O4">✓</span>
+    </div>
+  </div>
+
+  <div class="sl">Minuteur repos</div>
+  <div class="timer-box">
+    <div class="timer-label">60 secondes entre chaque série</div>
+    <div id="td-option" class="timer-display" style="color:#FCD34D">1:00</div>
+    <button class="timer-btn" id="tb-option" style="background:#B45309" onclick="startTimer('option')">⏱ LANCER 60 SECONDES</button>
+    <div class="rest-bar"><div id="rb-option" class="rest-fill" style="width:100%;background:#FCD34D"></div></div>
+  </div>
+
+  <div class="sl">Cardio tapis — identique aux autres séances</div>
+  <div class="phase-card">
+    <div class="ph-icon">📈</div>
+    <div class="ph-info"><h3>Montée progressive</h3><p>8% → 15% · 5 km/h · +1% toutes les 5 min</p></div>
+    <div class="ph-time" style="color:var(--blue)">20'</div>
+  </div>
+  <div class="phase-card">
+    <div class="ph-icon">🎯</div>
+    <div class="ph-info"><h3>Zone cible 146–156 bpm</h3><p>15% fixe · Vitesse ajustée selon FC</p></div>
+    <div class="ph-time" style="color:var(--green)">15'</div>
+  </div>
+  <div class="phase-card">
+    <div class="ph-icon">📉</div>
+    <div class="ph-info"><h3>Retour au calme</h3><p>15% → 5% · 3,5 km/h · Descente douce</p></div>
+    <div class="ph-time" style="color:var(--yellow)">5'</div>
+  </div>
+
+  <div class="sl">Angles des pectoraux</div>
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:13px;padding:14px;margin-bottom:14px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px;">
+      <span>🔵 Développé PLAT</span><span style="color:var(--muted)">Pectoraux milieu (masse)</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px;">
+      <span>📐 Développé INCLINÉ</span><span style="color:var(--muted)">Pectoraux hauts (galbe)</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;font-size:12px;">
+      <span>📉 Développé DÉCLINÉ</span><span style="color:var(--muted)">Pectoraux bas (densité)</span>
+    </div>
+  </div>
+
+</div>
+
 <script>
 // SERVICE WORKER
 if('serviceWorker' in navigator){
@@ -752,7 +859,7 @@ function switchTab(id,el){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active','t-g','t-r','t-b','t-y','t-p'));
   document.getElementById('panel-'+id).classList.add('active');
   el.classList.add('active');
-  const map={mercredi:'t-g',samedi:'t-r',tapis:'t-b',conseils:'t-y',suivi:'t-p'};
+  const map={mercredi:'t-g',samedi:'t-r',suivi:'t-p',option:'t-opt'};
   if(map[id]) el.classList.add(map[id]);
   if(id==='suivi') renderSuivi();
 }
@@ -786,18 +893,37 @@ function toggleCheck(item){
   item.querySelector('.check-box').textContent=item.classList.contains('done')?'✓':'';
 }
 
-// EXERCICE FAIT / PAS FAIT
+// EXERCICE FAIT / PAS FAIT — sauvegardé dans localStorage
 function toggleDone(card,event){
   if(event){
     const t=event.target;
     if(t.classList.contains('charge-btn')||t.classList.contains('charge-val')||t.tagName==='INPUT'||t.tagName==='TEXTAREA')return;
   }
   card.classList.toggle('done-ex');
+  // Sauvegarde l'état dans localStorage
+  const id=card.dataset.id;
+  if(id){
+    if(card.classList.contains('done-ex')){
+      localStorage.setItem('done-'+id,'1');
+    } else {
+      localStorage.removeItem('done-'+id);
+    }
+  }
   if(navigator.vibrate)navigator.vibrate(30);
 }
 
+// Restaure l'état "fait" au chargement de l'appli
+function loadDoneStates(){
+  document.querySelectorAll('.exercise-card[data-id]').forEach(card=>{
+    const id=card.dataset.id;
+    if(localStorage.getItem('done-'+id)==='1'){
+      card.classList.add('done-ex');
+    }
+  });
+}
+
 // CHARGES — localStorage
-const CHARGE_KEYS=['L1','L2','L3','L4','L5','M1','M2','M3','M4','M5','S1','S2','S3','S4','S5'];
+const CHARGE_KEYS=['L1','L2','L3','L4','L5','M1','M2','M3','M4','M5','S1','S2','S3','S4','S5','O1','O2','O3','O4'];
 function loadCharges(){
   CHARGE_KEYS.forEach(k=>{
     const v=localStorage.getItem('charge-'+k);
@@ -917,6 +1043,7 @@ function renderChart(mesures){
 // INIT
 window.addEventListener('DOMContentLoaded',()=>{
   loadCharges();
+  loadDoneStates();
   const now=new Date();
   const di=document.getElementById('input-date');
   if(di)di.value=now.toISOString().slice(0,7);
