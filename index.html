@@ -855,37 +855,91 @@ window.addEventListener('appinstalled',()=>document.getElementById('install-bann
 
 // TABS
 function switchTab(id,el){
+  if(!el){
+    el=document.querySelector(`.tab[onclick*="'${id}'"]`);
+  }
+  if(!el)return;
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active','t-g','t-r','t-b','t-y','t-p'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active','t-g','t-r','t-b','t-y','t-p','t-opt'));
   document.getElementById('panel-'+id).classList.add('active');
   el.classList.add('active');
   const map={mercredi:'t-g',samedi:'t-r',suivi:'t-p',option:'t-opt'};
   if(map[id]) el.classList.add(map[id]);
   if(id==='suivi') renderSuivi();
+  try{localStorage.setItem('active-tab',id);}catch(e){}
 }
 
 // TIMERS
 const timers={};
-function startTimer(id){
-  if(timers[id]){clearInterval(timers[id]);delete timers[id];}
+const TIMER_IDS=['lundi','mercredi','samedi','option'];
+
+function updateTimer(id){
   const display=document.getElementById('td-'+id);
   const bar=document.getElementById('rb-'+id);
   const btn=document.getElementById('tb-'+id);
-  display.style.display='block';btn.style.display='none';
-  let seconds=60;bar.style.width='100%';
-  if(navigator.vibrate)navigator.vibrate(50);
-  timers[id]=setInterval(()=>{
-    seconds--;
+  if(!display||!bar||!btn)return;
+
+  const endTime=parseInt(localStorage.getItem('timer_end_'+id)||'0',10);
+  const totalDuration=parseInt(localStorage.getItem('timer_dur_'+id)||'60',10);
+
+  if(!endTime){
+    if(timers[id]){clearInterval(timers[id]);delete timers[id];}
+    return;
+  }
+
+  const remainingMs=endTime-Date.now();
+  const seconds=Math.ceil(remainingMs/1000);
+
+  if(seconds>0){
+    display.style.display='block';
+    btn.style.display='none';
     display.textContent=Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0');
-    bar.style.width=(seconds/60*100)+'%';
-    if(seconds<=0){
-      clearInterval(timers[id]);delete timers[id];
-      display.textContent='✅ GO !';
-      if(navigator.vibrate)navigator.vibrate([100,50,100,50,200]);
-      setTimeout(()=>{display.style.display='none';btn.style.display='block';btn.textContent='⏱ RELANCER 60s';bar.style.width='100%';},2000);
-    }
-  },1000);
+    const pct=Math.min(100,Math.max(0,(remainingMs/(totalDuration*1000))*100));
+    bar.style.width=pct+'%';
+  }else{
+    if(timers[id]){clearInterval(timers[id]);delete timers[id];}
+    localStorage.removeItem('timer_end_'+id);
+    localStorage.removeItem('timer_dur_'+id);
+    display.style.display='block';
+    btn.style.display='none';
+    display.textContent='✅ GO !';
+    bar.style.width='100%';
+    if(navigator.vibrate)navigator.vibrate([100,50,100,50,200]);
+    setTimeout(()=>{
+      display.style.display='none';
+      btn.style.display='block';
+      btn.textContent='⏱ RELANCER 60s';
+      bar.style.width='100%';
+    },2000);
+  }
 }
+
+function startTimer(id,duration=60){
+  if(timers[id]){clearInterval(timers[id]);delete timers[id];}
+  const endTime=Date.now()+duration*1000;
+  localStorage.setItem('timer_end_'+id,endTime);
+  localStorage.setItem('timer_dur_'+id,duration);
+  if(navigator.vibrate)navigator.vibrate(50);
+
+  updateTimer(id);
+  timers[id]=setInterval(()=>updateTimer(id),500);
+}
+
+function syncAllTimers(){
+  TIMER_IDS.forEach(id=>{
+    const endTime=parseInt(localStorage.getItem('timer_end_'+id)||'0',10);
+    if(endTime){
+      updateTimer(id);
+      if(!timers[id]){
+        timers[id]=setInterval(()=>updateTimer(id),500);
+      }
+    }
+  });
+}
+
+window.addEventListener('visibilitychange',()=>{if(!document.hidden)syncAllTimers();});
+window.addEventListener('pageshow',syncAllTimers);
+window.addEventListener('focus',syncAllTimers);
 
 // CHECKLIST
 function toggleCheck(item){
@@ -1044,6 +1098,11 @@ function renderChart(mesures){
 window.addEventListener('DOMContentLoaded',()=>{
   loadCharges();
   loadDoneStates();
+  const savedTab=localStorage.getItem('active-tab');
+  if(savedTab && document.getElementById('panel-'+savedTab)){
+    switchTab(savedTab);
+  }
+  syncAllTimers();
   const now=new Date();
   const di=document.getElementById('input-date');
   if(di)di.value=now.toISOString().slice(0,7);
